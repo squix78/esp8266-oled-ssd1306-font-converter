@@ -1,0 +1,19 @@
+#!/bin/bash
+# The logic to start up your application should be put in this
+# script. The application will work only if it binds to
+# $OPENSHIFT_INTERNAL_IP:8080
+#nohup $OPENSHIFT_REPO_DIR/diy/testrubyserver.rb $OPENSHIFT_INTERNAL_IP $OPENSHIFT_REPO_DIR/diy > $OPENSHIFT_LOG_DIR/server.log 2>&1 &
+. ${OPENSHIFT_DATA_DIR}/node/node.sh
+cd ${OPENSHIFT_REPO_DIR}
+# Select app.js (preferred) or server.js
+if [ -s app.js ]; then
+  APP_FILE=app.js
+elif [ -s server.js ]; then
+  APP_FILE=server.js
+else
+  echo "ERROR: can't find app.js or server.js"
+  exit 1
+fi
+node -v
+echo "nohup node ${APP_FILE} >${OPENSHIFT_LOG_DIR}/server.log 2>&1 &"
+nohup node ${APP_FILE} >${OPENSHIFT_LOG_DIR}/server.log 2>&1 &
