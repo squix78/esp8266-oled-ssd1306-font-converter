@@ -18,7 +18,7 @@ fi
 LOG_FILE=${OPENSHIFT_LOG_DIR}/server.log
 if [ -s $LOG_FILE ]; then
   # Get the modify time of the log file
-  MODIFY=`stat -c "%Y" server.log`
+  MODIFY=`stat -c "%Y" $LOG_FILE`
   # Convert to time stamp
   STAMP=`date -d @$MODIFY "+%Y%m%d-%H%M%S"`
   mv -f $LOG_FILE ${LOG_FILE}.${STAMP}.log
