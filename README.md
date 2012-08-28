@@ -1,7 +1,9 @@
 openshift-diy-nodejs08
 ========================
 
-Thanks for the great work by [razorinc](https://github.com/razorinc/redis-openshift-example) and [creationix](https://github.com/creationix/nvm/), this repo let you test node.js v0.8 with OpenShift DIY application type.
+Thanks for the great work by [razorinc](https://github.com/razorinc/redis-openshift-example) and [creationix](https://github.com/creationix/nvm/), this repo let you test node.js v0.8 with OpenShift DIY application type. It will first check for pre-compiled linux version, then compile from source if not found.
+
+[node-supervisor](https://github.com/isaacs/node-supervisor) is used to automatically restart the node.js app if somehow crashed.
 
 Usage
 -----
@@ -20,7 +22,7 @@ Then push the repo to openshift
 
     git push
 
-First time push will take a while for the `pre-build` script to finish download and compile node.
+First time push will take quite a while to finish if pre-compiled binary is not available.
 
 The `.openshift/action_hooks/start` script will first try to find `app.js` to start with node. If not found, `server.js` will be used.
 
@@ -28,7 +30,7 @@ Check the end of the message for node version and started node script:
 
     remote: Starting application...
     remote: v0.8.8
-    remote: nohup node app.js >/var/lib/stickshift/xxxxxxxxxxxxxxxxxxxxxxxxxxxxx/test/logs//server.log 2>&1 &
+    remote: nohup supervisor app.js >/var/lib/stickshift/xxxxxxxxxxxxxxxxxxxxxxxxxxxxx/yourapp/logs//server.log 2>&1 &
     remote: Done
 
 In this case it is node `v0.8.8` with `app.js`.
@@ -44,7 +46,7 @@ Edit `.openshift/action_hooks/pre_build`
 
 to change the `v0.8` minor version and then `git push`.
 
-**The script won't delete previously installed `node` binary**, which stored under `${OPENSHIFT_DATA_DIR}/node`. You will need to SSH in to delete the unwanted versions (to save disk quota for example).
+**The script won't delete previously installed `node` binary**, which stored under `${OPENSHIFT_DATA_DIR}/node-$NODE_VERSION`. You will need to SSH in to delete the unwanted versions (to save disk quota for example).
 
 **Note that `v0.6.x` won't work by this method.**
 
