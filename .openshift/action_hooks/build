@@ -6,3 +6,5 @@
 . ${OPENSHIFT_DATA_DIR}/node/node.sh
 cd ${OPENSHIFT_REPO_DIR}
 npm install
+# To keep node running if crashed
+npm install supervisor -g
