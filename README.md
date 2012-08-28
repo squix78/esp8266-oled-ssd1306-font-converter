@@ -44,10 +44,10 @@ Edit `.openshift/action_hooks/pre_build`
 
     NODE_VERSION=v0.8.8
 
-to change the `v0.8` minor version and then `git push`.
+to change the `v0.8` minor version, `commit` and then `push` to change the node.js version on OpenShift.
 
 **The script won't delete previously installed `node` binary**, which stored under `${OPENSHIFT_DATA_DIR}/node-$NODE_VERSION`. You will need to SSH in to delete the unwanted versions (to save disk quota for example).
 
-**Note that `v0.6.x` won't work by this method.**
+**Note that `v0.6.x` won't work with this method.**
 
 
