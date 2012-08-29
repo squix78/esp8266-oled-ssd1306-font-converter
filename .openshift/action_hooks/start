@@ -5,15 +5,8 @@
 #nohup $OPENSHIFT_REPO_DIR/diy/testrubyserver.rb $OPENSHIFT_INTERNAL_IP $OPENSHIFT_REPO_DIR/diy > $OPENSHIFT_LOG_DIR/server.log 2>&1 &
 . ${OPENSHIFT_DATA_DIR}node.sh
 cd ${OPENSHIFT_REPO_DIR}
-# Select app.js (preferred) or server.js
-#if [ -s app.js ]; then
-#  APP_FILE=app.js
-#elif [ -s server.js ]; then
-#  APP_FILE=server.js
-#else
-#  echo "ERROR: can't find app.js or server.js"
-#  exit 1
-#fi
+# Extract node.js script from package.json
+APP_FILE=`node -e 'var package=require("./package.json");console.log(package.scripts.start.split(/ /)[1]);'`
 # Backup server.log if exist
 LOG_FILE=${OPENSHIFT_LOG_DIR}server.log
 if [ -s $LOG_FILE ]; then
@@ -27,5 +20,5 @@ node -v
 #echo "nohup node ${APP_FILE} >${OPENSHIFT_LOG_DIR}server.log 2>&1 &"
 #nohup node ${APP_FILE} >${OPENSHIFT_LOG_DIR}server.log 2>&1 &
 # Use supervisor to keep node app running after crash
-echo "nohup supervisor -- npm start >$LOG_FILE 2>&1 &"
-nohup supervisor -x npm start >$LOG_FILE 2>&1 &
+echo "nohup supervisor $APP_FILE >$LOG_FILE 2>&1 &"
+nohup supervisor $APP_FILE >$LOG_FILE 2>&1 &

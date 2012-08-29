@@ -30,7 +30,7 @@ Check the end of the message for node version:
 
     remote: Starting application...
     remote: v0.8.8
-    remote: nohup supervisor npm start >/var/lib/stickshift/xxxxxxxxxxxxxxxxxxxxxxxxxxxxx/yourapp/logs/server.log 2>&1 &
+    remote: nohup supervisor server.js >/var/lib/stickshift/xxxxxxxxxxxxxxxxxxxxxxxxxxxxx/yourapp/logs/server.log 2>&1 &
     remote: Done
 
 In this case it is node `v0.8.8`.
