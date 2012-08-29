@@ -7,7 +7,7 @@
 # Will need around 200MB free disk space
 NODE_VERSION=v0.8.8
 
-if [ ! -e ${OPENSHIFT_DATA_DIR}/node-${NODE_VERSION}/bin/node ]; then
+if [ ! -e ${OPENSHIFT_DATA_DIR}node-${NODE_VERSION}/bin/node ]; then
   cd ${OPENSHIFT_TMP_DIR}
   # Determine hardware type for pre-compiled linux binary
   if [ "`uname -i`" == "x86_64" ]; then
@@ -20,7 +20,7 @@ if [ ! -e ${OPENSHIFT_DATA_DIR}/node-${NODE_VERSION}/bin/node ]; then
   if [ "`curl -Is $BINARY | grep '200 OK'`" != '' ]; then
     curl -L -o node-${NODE_VERSION}-linux-${TYPE}.tar.gz $BINARY
     tar -xvzf node-${NODE_VERSION}-linux-${TYPE}.tar.gz
-    mv node-${NODE_VERSION}-linux-${TYPE} ${OPENSHIFT_DATA_DIR}/node-${NODE_VERSION}
+    mv node-${NODE_VERSION}-linux-${TYPE} ${OPENSHIFT_DATA_DIR}node-${NODE_VERSION}
     rm -f node-${NODE_VERSION}-linux-${TYPE}.tar.gz
   else
     # Don't have pre-compiled binary, compile from source. Determine tarball url
@@ -37,7 +37,7 @@ if [ ! -e ${OPENSHIFT_DATA_DIR}/node-${NODE_VERSION}/bin/node ]; then
     fi
     cd node-${NODE_VERSION}
     echo "Start compiling Node ${NODE_VERSION} on Openshift (it'll take a while)"
-    ./configure --prefix="${OPENSHIFT_DATA_DIR}/node-${NODE_VERSION}" && make && make install
+    ./configure --prefix="${OPENSHIFT_DATA_DIR}node-${NODE_VERSION}" && make && make install
     # Assume it works, delete the tarball and source codes
     # because files in /tmp still counted into the disk quota
     cd ${OPENSHIFT_TMP_DIR}
@@ -49,15 +49,16 @@ fi
 # Create environment variables for this version
 cat <<EOF > ${OPENSHIFT_DATA_DIR}/node.sh
 NODE_VERSION=${NODE_VERSION}
+export TMPDIR=\${OPENSHIFT_TMP_DIR}
 if [ -z \$NODE_DEFINED ]; then
   export NODE_DEFINED=1
-  export PATH="\${OPENSHIFT_DATA_DIR}/node-\${NODE_VERSION}/bin:\$PATH"
-  export npm_config_cache=\${OPENSHIFT_DATA_DIR}/node-\${NODE_VERSION}/.npm
-  export npm_config_userconfig=\${OPENSHIFT_DATA_DIR}/node-\${NODE_VERSION}/.npmrc
-  export npm_config_userignorefile=\${OPENSHIFT_DATA_DIR}/node-\${NODE_VERSION}/.npmignore
+  export PATH="\${OPENSHIFT_DATA_DIR}node-\${NODE_VERSION}/bin:\$PATH"
+  export npm_config_cache=\${OPENSHIFT_DATA_DIR}node-\${NODE_VERSION}/.npm
+  export npm_config_userconfig=\${OPENSHIFT_DATA_DIR}node-\${NODE_VERSION}/.npmrc
+  export npm_config_userignorefile=\${OPENSHIFT_DATA_DIR}node-\${NODE_VERSION}/.npmignore
   export npm_config_tmp=\${OPENSHIFT_TMP_DIR}
   export NODE_ENV=production
 fi
 EOF
-chmod +x ${OPENSHIFT_DATA_DIR}/node.sh
+chmod +x ${OPENSHIFT_DATA_DIR}node.sh
 
