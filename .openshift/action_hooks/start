@@ -6,14 +6,14 @@
 . ${OPENSHIFT_DATA_DIR}node.sh
 cd ${OPENSHIFT_REPO_DIR}
 # Select app.js (preferred) or server.js
-if [ -s app.js ]; then
-  APP_FILE=app.js
-elif [ -s server.js ]; then
-  APP_FILE=server.js
-else
-  echo "ERROR: can't find app.js or server.js"
-  exit 1
-fi
+#if [ -s app.js ]; then
+#  APP_FILE=app.js
+#elif [ -s server.js ]; then
+#  APP_FILE=server.js
+#else
+#  echo "ERROR: can't find app.js or server.js"
+#  exit 1
+#fi
 # Backup server.log if exist
 LOG_FILE=${OPENSHIFT_LOG_DIR}server.log
 if [ -s $LOG_FILE ]; then
@@ -27,5 +27,5 @@ node -v
 #echo "nohup node ${APP_FILE} >${OPENSHIFT_LOG_DIR}server.log 2>&1 &"
 #nohup node ${APP_FILE} >${OPENSHIFT_LOG_DIR}server.log 2>&1 &
 # Use supervisor to keep node app running after crash
-echo "nohup supervisor ${APP_FILE} >$LOG_FILE 2>&1 &"
-nohup supervisor ${APP_FILE} >$LOG_FILE 2>&1 &
+echo "nohup supervisor npm start >$LOG_FILE 2>&1 &"
+nohup supervisor npm start >$LOG_FILE 2>&1 &

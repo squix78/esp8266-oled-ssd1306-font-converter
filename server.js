@@ -62,6 +62,5 @@ process.on('exit', function() { terminator(); });
 
 //  And start the app on that interface (and port).
 app.listen(port, ipaddr, function() {
-   console.log('%s: Node (version: %s) server.js started on %s:%d ...', Date(Date.now() ), process.version,
-               ipaddr, port);
+   console.log('%s: Node (version: %s) %s started on %s:%d ...', Date(Date.now() ), process.version, process.argv[1], ipaddr, port);
 });

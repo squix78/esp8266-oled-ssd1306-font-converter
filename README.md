@@ -22,18 +22,18 @@ Then push the repo to openshift
 
     git push
 
-First time push will take quite a while to finish if pre-compiled binary is not available.
+If pre-compiled binary is not available, first push will take a while to finish.
 
-The `.openshift/action_hooks/start` script will first try to find `app.js` to start with node. If not found, `server.js` will be used.
+You can specify the node.js script to start with in `package.json` as described [here](https://openshift.redhat.com/community/kb/kb-e1048-how-can-i-run-my-own-nodejs-script).
 
-Check the end of the message for node version and started node script:
+Check the end of the message for node version:
 
     remote: Starting application...
     remote: v0.8.8
-    remote: nohup supervisor app.js >/var/lib/stickshift/xxxxxxxxxxxxxxxxxxxxxxxxxxxxx/yourapp/logs//server.log 2>&1 &
+    remote: nohup supervisor npm start >/var/lib/stickshift/xxxxxxxxxxxxxxxxxxxxxxxxxxxxx/yourapp/logs/server.log 2>&1 &
     remote: Done
 
-In this case it is node `v0.8.8` with `app.js`.
+In this case it is node `v0.8.8`.
 
 Now open your openshift app in browser and you should see the standard openshift sample page. Enjoy!!
 
