@@ -7,6 +7,7 @@
 # Will need around 200MB free disk space
 cd ${OPENSHIFT_REPO_DIR}
 NODE_VERSION=`node -e 'var config_diy=require("./config_diy");console.log(config_diy.nodejs.version)'`
+REMOVE_OLD=`node -e 'var config_diy=require("./config_diy");console.log(config_diy.nodejs.removeOld)'`
 
 if [ ! -e ${OPENSHIFT_DATA_DIR}node-${NODE_VERSION}/bin/node ]; then
   cd ${OPENSHIFT_TMP_DIR}
@@ -37,7 +38,6 @@ if [ ! -e ${OPENSHIFT_DATA_DIR}node-${NODE_VERSION}/bin/node ]; then
       tar -xvzf node-${NODE_VERSION}.tar.gz
     fi
     # Delete previous version
-    REMOVE_OLD=`node -e 'var config_diy=require("./config_diy");console.log(config_diy.nodejs.removeOld)'`
     if [ $REMOVE_OLD == "true" ]; then
       rm -rf ${OPENSHIFT_DATA_DIR}node-*
     fi

@@ -10,7 +10,7 @@ Usage
 
 Create an DIY app
 
-    rhc app create -a yourapp -t diy-0.1
+    rhc app create -t diy-0.1 -a yourapp
 
 Add this repository
 
