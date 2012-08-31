@@ -5,7 +5,8 @@
 # could be python, php, ruby, etc.
 
 # Will need around 200MB free disk space
-NODE_VERSION=v0.8.8
+cd ${OPENSHIFT_REPO_DIR}
+NODE_VERSION=`node -e 'var config_diy=require("./config_diy");console.log(config_diy.nodejs.version)'`
 
 if [ ! -e ${OPENSHIFT_DATA_DIR}node-${NODE_VERSION}/bin/node ]; then
   cd ${OPENSHIFT_TMP_DIR}
