@@ -36,6 +36,11 @@ if [ ! -e ${OPENSHIFT_DATA_DIR}node-${NODE_VERSION}/bin/node ]; then
       curl -L -o node-${NODE_VERSION}.tar.gz $tarball
       tar -xvzf node-${NODE_VERSION}.tar.gz
     fi
+    # Delete previous version
+    REMOVE_OLD=`node -e 'var config_diy=require("./config_diy");console.log(config_diy.nodejs.removeOld)'`
+    if [ $REMOVE_OLD == "true" ]; then
+      rm -rf ${OPENSHIFT_DATA_DIR}node-*
+    fi
     cd node-${NODE_VERSION}
     echo "Start compiling Node ${NODE_VERSION} on Openshift (it'll take a while)"
     ./configure --prefix="${OPENSHIFT_DATA_DIR}node-${NODE_VERSION}" && make && make install
