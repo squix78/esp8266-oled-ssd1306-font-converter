@@ -29,11 +29,11 @@ You can specify the node.js script to start with in `package.json` as described 
 Check the end of the message for node version:
 
     remote: Starting application...
-    remote: v0.8.8
+    remote: v0.8.16
     remote: nohup supervisor server.js >/var/lib/stickshift/xxxxxxxxxxxxxxxxxxxxxxxxxxxxx/yourapp/logs/server.log 2>&1 &
     remote: Done
 
-In this case it is node `v0.8.8`.
+In this case it is node `v0.8.16`.
 
 Now open your openshift app in browser and you should see the standard openshift sample page. Enjoy!!
 
@@ -43,7 +43,7 @@ Settings
 Edit `config_diy.json`
 
     "nodejs": {
-      "version": "v0.8.8",
+      "version": "v0.8.16",
       "removeOld": false
     }
 
