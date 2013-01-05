@@ -29,8 +29,15 @@ You can specify the node.js script to start with in `package.json` as described 
 Check the end of the message for node version:
 
     remote: Starting application...
-    remote: v0.8.16
-    remote: nohup supervisor server.js >/var/lib/stickshift/xxxxxxxxxxxxxxxxxxxxxxxxxxxxx/yourapp/logs/server.log 2>&1 &
+    remote: Node Version:
+    remote: { http_parser: '1.0',
+    remote:   node: '0.8.16',
+    remote:   v8: '3.11.10.25',
+    remote:   ares: '1.7.5-DEV',
+    remote:   uv: '0.8',
+    remote:   zlib: '1.2.3',
+    remote:   openssl: '1.0.0f' }
+    remote: nohup supervisor server.js >/var/lib/stickshift/xxxxxxxxxxxxxxxxxx/diy-0.1/logs/server.log 2>&1 &
     remote: Done
 
 In this case it is node `v0.8.16`.

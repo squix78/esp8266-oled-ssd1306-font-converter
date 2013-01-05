@@ -14,11 +14,11 @@ if [ -s $LOG_FILE ]; then
   MODIFY=`stat -c "%Y" $LOG_FILE`
   # Convert to time stamp
   STAMP=`date -d @$MODIFY "+%Y%m%d-%H%M%S"`
-  mv -f $LOG_FILE ${LOG_FILE}.${STAMP}.log
+  mv -f $LOG_FILE ${LOG_FILE}.${STAMP}
 fi
-node -v
+node -e 'console.log(process.versions);'
 #echo "nohup node ${APP_FILE} >${OPENSHIFT_LOG_DIR}server.log 2>&1 &"
 #nohup node ${APP_FILE} >${OPENSHIFT_LOG_DIR}server.log 2>&1 &
 # Use supervisor to keep node app running after crash
 echo "nohup supervisor $APP_FILE >$LOG_FILE 2>&1 &"
-nohup supervisor -w $APP_FILE $APP_FILE >$LOG_FILE 2>&1 &
+nohup supervisor -w . $APP_FILE >$LOG_FILE 2>&1 &
