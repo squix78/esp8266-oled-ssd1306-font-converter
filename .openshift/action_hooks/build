@@ -4,6 +4,8 @@
 # before the deploy step.  This script gets executed directly, so it
 # could be python, php, ruby, etc.
 . ${OPENSHIFT_DATA_DIR}node.sh
+# Need to clean node-gyp up as somehow it got corrupt after a few build
+rm -rf ${OPENSHIFT_TMP_DIR}/.node-gyp
 cd ${OPENSHIFT_REPO_DIR}
 npm install
 # To keep node running if crashed
