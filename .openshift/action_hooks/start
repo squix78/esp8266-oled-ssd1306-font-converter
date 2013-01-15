@@ -9,12 +9,14 @@ cd ${OPENSHIFT_REPO_DIR}
 APP_FILE=`node -e 'var package=require("./package.json");console.log(package.scripts.start.split(/ /)[1]);'`
 # Backup server.log if exist
 LOG_FILE=${OPENSHIFT_DIY_LOG_DIR}server.log
+BACKUP_LOG=${OPENSHIFT_DIY_LOG_DIR}backup_log
 if [ -s $LOG_FILE ]; then
+  mkdir -p ${BACKUP_LOG}
   # Get the modify time of the log file
   MODIFY=`stat -c "%Y" $LOG_FILE`
   # Convert to time stamp
   STAMP=`date -d @$MODIFY "+%Y%m%d-%H%M%S"`
-  mv -f $LOG_FILE ${LOG_FILE}.${STAMP}
+  mv -f $LOG_FILE ${BACKUP_LOG}/server.log.${STAMP}
 fi
 node -e 'console.log(process.versions);'
 #echo "nohup node ${APP_FILE} >${OPENSHIFT_LOG_DIR}server.log 2>&1 &"
