@@ -64,6 +64,7 @@ if [ -z \$NODE_DEFINED ]; then
   export npm_config_userconfig=\${OPENSHIFT_DATA_DIR}node-\${NODE_VERSION}/.npmrc
   export npm_config_userignorefile=\${OPENSHIFT_DATA_DIR}node-\${NODE_VERSION}/.npmignore
   export npm_config_tmp=\${OPENSHIFT_TMP_DIR}
+  export npm_config_init_module=\${OPENSHIFT_DATA_DIR}node-\${NODE_VERSION}/.npm-init.js
   export NODE_ENV=production
 fi
 EOF

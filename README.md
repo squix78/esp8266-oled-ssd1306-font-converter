@@ -31,16 +31,16 @@ Check the end of the message for node version:
     remote: Starting application...
     remote: Node Version:
     remote: { http_parser: '1.0',
-    remote:   node: '0.8.16',
+    remote:   node: '0.8.18',
     remote:   v8: '3.11.10.25',
     remote:   ares: '1.7.5-DEV',
     remote:   uv: '0.8',
     remote:   zlib: '1.2.3',
     remote:   openssl: '1.0.0f' }
-    remote: nohup supervisor server.js >/var/lib/stickshift/xxxxxxxxxxxxxxxxxx/diy-0.1/logs/server.log 2>&1 &
+    remote: nohup supervisor server.js >/var/lib/openshift/xxxxxxxxxxxxxxxxxx/diy-0.1/logs/server.log 2>&1 &
     remote: Done
 
-In this case it is node `v0.8.16`.
+In this case it is node `v0.8.18`.
 
 Now open your openshift app in browser and you should see the standard openshift sample page. Enjoy!!
 
@@ -50,12 +50,16 @@ Settings
 Edit `config_diy.json`
 
     "nodejs": {
-      "version": "v0.8.16",
-      "removeOld": false
+      "version": "v0.8.18",
+      "removeOld": false,
+      "storeModulesInData": true,
+      "cleanModulesInData": false
     }
 
 - `version`: change node.js version
 - `removeOld`: delete previous installed node.js binarys
+- `storeModulesInData`: Every deploy (`git push`) the entire repo got refreshed which mean all modules/packages will need to re-install again. Set `storeModulesInData` to `true` so that modules/packages are installed under `$OPENSHIFT_DATA_DIR`, as a result the time required to re-deploy can be reduced (especially when there are native code modules such as `bcrypt`).
+- `cleanModulesInData`: If somehow you want to do a fresh install of the modules, set this option to `true`. Remember to set it back to `false` before the next deploy or everything will re-install again.
 
 `commit` and then `push` to reflect the changes to the OpenShift app.
 
