@@ -34,6 +34,7 @@ Check for node version:
 
 In this case it is node `v0.8.20`.
 
+**Note that using `--from-code` will not retain this repository as `remote` in your app's repo, so you will have to manually merge any future updates if you interested.**
 
 Usage - Old
 -----------
