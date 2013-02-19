@@ -5,8 +5,38 @@ Thanks for the great work by [razorinc](https://github.com/razorinc/redis-opensh
 
 [node-supervisor](https://github.com/isaacs/node-supervisor) is used to automatically restart the node.js app if somehow crashed.
 
-Usage
------
+Usage - New (rhc-1.4.7 or above)
+--------------------------------
+Create the DIY app
+
+    rhc app create yourapp diy-0.1 --from-code=git://github.com/eddie168/openshift-diy-nodejs08.git
+
+Check for node version:
+
+    rhc tail -a test
+    Password: **
+
+    ==> diy-0.1/logs/error.log <==
+    DEBUG: Running node-supervisor with
+    DEBUG:   program 'server.js'
+    DEBUG:   --watch '.'
+    DEBUG:   --ignore 'node_modules'
+    DEBUG:   --extensions 'node|js'
+    DEBUG:   --exec 'node'
+    DEBUG: Starting child process with 'node server.js'
+    DEBUG: Ignoring directory '/var/lib/openshift/xxxxxxxxxxxxxxxxxx/app-root/runtime/repo/node_modules'.
+    DEBUG: Watching directory '/var/lib/openshift/xxxxxxxxxxxxxxxxxx/app-root/runtime/repo' for changes.
+    
+    ==> diy-0.1/logs/server.log <==
+    
+    
+    Tue Feb 19 2013 02:57:32 GMT-0500 (EST): Node (version: v0.8.20) /var/lib/openshift/xxxxxxxxxxxxxxxxxx/app-root/runtime/repo/server.js started on xxx.xxx.xxx.xxx:8080 ...
+
+In this case it is node `v0.8.20`.
+
+
+Usage - Old
+-----------
 
 Create an DIY app
 
@@ -31,7 +61,7 @@ Check the end of the message for node version:
     remote: Starting application...
     remote: Node Version:
     remote: { http_parser: '1.0',
-    remote:   node: '0.8.18',
+    remote:   node: '0.8.20',
     remote:   v8: '3.11.10.25',
     remote:   ares: '1.7.5-DEV',
     remote:   uv: '0.8',
@@ -40,7 +70,7 @@ Check the end of the message for node version:
     remote: nohup supervisor server.js >/var/lib/openshift/xxxxxxxxxxxxxxxxxx/diy-0.1/logs/server.log 2>&1 &
     remote: Done
 
-In this case it is node `v0.8.18`.
+In this case it is node `v0.8.20`.
 
 Now open your openshift app in browser and you should see the standard openshift sample page. Enjoy!!
 
@@ -50,7 +80,7 @@ Settings
 Edit `config_diy.json`
 
     "nodejs": {
-      "version": "v0.8.18",
+      "version": "v0.8.20",
       "removeOld": false,
       "separateErrorLog": true,
       "storeModulesInData": true,
