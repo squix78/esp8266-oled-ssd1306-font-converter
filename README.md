@@ -52,12 +52,14 @@ Edit `config_diy.json`
     "nodejs": {
       "version": "v0.8.18",
       "removeOld": false,
+      "separateErrorLog": true,
       "storeModulesInData": true,
       "cleanModulesInData": false
     }
 
 - `version`: change node.js version
 - `removeOld`: delete previous installed node.js binarys
+- `separateErrorLog`: If `true`, error will be redirected to `${OPENSHIFT_DIY_LOG_DIR}/error.log`, otherwise will be redirected into `${OPENSHIFT_DIY_LOG_DIR}/server.log`
 - `storeModulesInData`: Every deploy (`git push`) the entire repo got refreshed which mean all modules/packages will need to re-install again. Set `storeModulesInData` to `true` so that modules/packages are installed under `$OPENSHIFT_DATA_DIR`, as a result the time required to re-deploy can be reduced (especially when there are native code modules such as `bcrypt`).
 - `cleanModulesInData`: If somehow you want to do a fresh install of the modules, set this option to `true`. Remember to set it back to `false` before the next deploy or everything will re-install again.
 
