@@ -1,7 +1,7 @@
 openshift-diy-nodejs08
 ========================
 
-Thanks for the great work by [razorinc](https://github.com/razorinc/redis-openshift-example) and [creationix](https://github.com/creationix/nvm/), this repo let you test node.js v0.8 (v0.9 seems OK too) with OpenShift DIY application type. It will first check for pre-compiled linux version, then compile from source if not found.
+Thanks for the great work by [razorinc](https://github.com/razorinc/redis-openshift-example) and [creationix](https://github.com/creationix/nvm/), this repo let you test node.js v0.8 or above with OpenShift DIY Cartridge. It will first check for pre-compiled linux version, then compile from source if not found.
 
 [node-supervisor](https://github.com/isaacs/node-supervisor) is used to automatically restart the node.js app if somehow crashed.
 
