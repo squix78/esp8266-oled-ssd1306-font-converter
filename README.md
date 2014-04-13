@@ -49,7 +49,7 @@ Add this repository
     git remote add nodejs08 -m master git://github.com/eddie168/openshift-diy-nodejs08.git
     git pull -s recursive -X theirs nodejs08 master
 
-Then push the repo to openshift
+Change settings in `config_diy.json` if needed (remember to commit the changes), then push the repo to openshift
 
     git push
 
@@ -81,18 +81,16 @@ Settings
 Edit `config_diy.json`
 
     "nodejs": {
-      "version": "v0.8.20",
-      "removeOld": false,
+      "version": "v0.10.26",
+      "removeOld": true,
       "separateErrorLog": true,
-      "storeModulesInData": true,
-      "cleanModulesInData": false
+      "cleanNPMInstall": false
     }
 
 - `version`: change node.js version
 - `removeOld`: delete previous installed node.js binarys
 - `separateErrorLog`: If `true`, error will be redirected to `${OPENSHIFT_DIY_LOG_DIR}/error.log`, otherwise will be redirected into `${OPENSHIFT_DIY_LOG_DIR}/server.log`
-- `storeModulesInData`: Every deploy (`git push`) the entire repo got refreshed which mean all modules/packages will need to re-install again. Set `storeModulesInData` to `true` so that modules/packages are installed under `$OPENSHIFT_DATA_DIR`, as a result the time required to re-deploy can be reduced (especially when there are native code modules such as `bcrypt`).
-- `cleanModulesInData`: If somehow you want to do a fresh install of the modules, set this option to `true`. Remember to set it back to `false` before the next deploy or everything will re-install again.
+- `cleanNPMInstall`: If `true`, the `node_modules/` directory will be deleted before execute `npm install`. Set it to `false` to reduce the time required to re-deploy (especially when there are native code modules such as `bcrypt`).
 
 `commit` and then `push` to reflect the changes to the OpenShift app.
 

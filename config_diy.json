@@ -1,9 +1,8 @@
 {
   "nodejs": {
-    "version": "v0.8.20",
-    "removeOld": false,
+    "version": "v0.10.26",
+    "removeOld": true,
     "separateErrorLog": true,
-    "storeModulesInData": true,
-    "cleanModulesInData": false
+    "cleanNPMInstall": false
   }
 }
