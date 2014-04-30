@@ -1,0 +1,19 @@
+{
+  "name": "Squix Application Template",
+  "version": "0.0.1",
+  "authors": [
+    "squix78"
+  ],
+  "description": "Application Template for App Engine applications",
+  "main": "index.html",
+  "license": "MIT",
+  "homepage": "*.appspot.com",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src/main/webapp/components",
+    "test",
+    "tests"
+  ]
+}
