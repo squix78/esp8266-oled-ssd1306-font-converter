@@ -1,3 +1,4 @@
 /node_modules/
 /target/
 /src/main/webapp/dist/
+/src/main/webapp/components/
