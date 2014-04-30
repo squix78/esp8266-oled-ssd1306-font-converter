@@ -12,6 +12,7 @@
     "livereloadx": "~0.3.3",
     "grunt": "~0.4.4",
     "grunt-contrib-less": "^0.11.0",
-    "grunt-bower-concat": "^0.2.4"
+    "grunt-bower-concat": "^0.2.4",
+    "grunt-bower-install": "^1.4.0"
   }
 }
