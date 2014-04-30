@@ -11,7 +11,12 @@ This is my project template for rapidly testing an idea. It is based on the foll
 * bower: javascript dependency management
 
 ## Getting Started
-After checking out the code base you can run the devserve by typing
+To get all dependencies installed type
+```html
+bower install
+```
+
+You can run the devserver by typing
 ```html
 mvn appengine:devserver
 ```
