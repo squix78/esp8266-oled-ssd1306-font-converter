@@ -95,7 +95,7 @@
     <dependency>
       <groupId>com.googlecode.objectify</groupId>
       <artifactId>objectify</artifactId>
-      <version>4.0rc1</version>
+      <version>5.0.2</version>
     </dependency>
 
     <!-- utils -->
@@ -114,6 +114,13 @@
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-classic</artifactId>
       <version>0.9.24</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.12.6</version>
+      <scope>provided</scope>
     </dependency>
 
     <!-- Test Dependencies -->
@@ -190,6 +197,17 @@
         </configuration>
       </plugin>
 
+      <plugin>
+          <groupId>com.google.appengine</groupId>
+          <artifactId>appengine-maven-plugin</artifactId>
+          <version>${appengine.target.version}</version>
+          <configuration>
+          <jvmFlags>
+              <jvmFlag>-Xdebug</jvmFlag>
+              <jvmFlag>-agentlib:jdwp=transport=dt_socket,address=8000,server=y,suspend=n</jvmFlag>
+           </jvmFlags>
+          </configuration>
+      </plugin>
 
       <plugin>
         <artifactId>maven-antrun-plugin</artifactId>

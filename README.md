@@ -23,7 +23,7 @@ mvn appengine:devserver
 
 To get livereload working run
 ```html
-grunt
+grunt server
 ```
 
 ## License
