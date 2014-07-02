@@ -10,7 +10,23 @@ This is my project template for rapidly testing an idea. It is based on the foll
 * grunt: javascript task tool
 * bower: javascript dependency management
 
-## For this repo (inside squix78)
+## Getting Started
+To get all dependencies installed type
+```html
+bower install
+```
+
+You can run the devserver by typing
+```html
+mvn appengine:devserver
+```
+
+To get livereload working run
+```html
+grunt server
+```
+
+## Fork this repo (inside squix78)
 Create a new empty repo and clone it locally:
 ```html
 git clone https://github.com/squix78/newcoolproject.git
@@ -31,21 +47,6 @@ Then push everything back to the new repo:
 git push origin master
 ```
 
-## Getting Started
-To get all dependencies installed type
-```html
-bower install
-```
-
-You can run the devserver by typing
-```html
-mvn appengine:devserver
-```
-
-To get livereload working run
-```html
-grunt server
-```
 
 ## License
 
