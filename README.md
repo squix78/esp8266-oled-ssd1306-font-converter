@@ -10,6 +10,27 @@ This is my project template for rapidly testing an idea. It is based on the foll
 * grunt: javascript task tool
 * bower: javascript dependency management
 
+## For this repo (inside squix78)
+Create a new empty repo and clone it locally:
+```html
+git clone https://github.com/squix78/newcoolproject.git
+```
+Then enter the newcoolproject folder and
+```html
+git remote add upstream https://github.com/squix78/appengine-template.git
+```
+Pull a copy of the original repo:
+
+```html
+git fetch upstream
+git merge upstream/master
+```
+
+Then push everything back to the new repo:
+```html
+git push origin master
+```
+
 ## Getting Started
 To get all dependencies installed type
 ```html
