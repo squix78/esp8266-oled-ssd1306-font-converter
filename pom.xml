@@ -11,7 +11,7 @@
 
   <properties>
     <appengine.app.version>1</appengine.app.version>
-    <appengine.target.version>1.9.2</appengine.target.version>
+    <appengine.target.version>1.9.6</appengine.target.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
@@ -20,6 +20,10 @@
       <id>maven-restlet</id>
       <name>Public online Restlet repository</name>
       <url>http://maven.restlet.org</url>
+    </repository>
+    <repository>
+      <id>my-alternate-repository</id>
+      <url>http://myrepo.net/repo</url>
     </repository>
   </repositories>
 
@@ -30,6 +34,12 @@
       <artifactId>appengine-api-1.0-sdk</artifactId>
       <version>${appengine.target.version}</version>
     </dependency>
+	<dependency>
+		<groupId>com.google.appengine</groupId>
+		<artifactId>appengine-api-labs</artifactId>
+        <version>${appengine.target.version}</version>
+	</dependency>
+
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>servlet-api</artifactId>
@@ -224,18 +234,23 @@
               osfamily="windows" failonerror="true">
                   <arg line="/c npm config set color false"/>
               </exec>
-              <exec executable="bash" dir="${project.basedir}"
+              <exec executable="npm" dir="${project.basedir}"
               osfamily="unix" failonerror="true">
-                  <arg line="npm config set color false"/>
+                  <arg line="config set color false"/>
               </exec>
               <exec executable="cmd" dir="${project.basedir}"
               osfamily="windows" failonerror="true">
                   <arg line="/c npm install"/>
               </exec>
+              <!-- 
               <exec executable="bash" dir="${project.basedir}"
               osfamily="unix" failonerror="true">
                   <arg line="npm install"/>
               </exec>
+               -->
+              <exec executable="npm" dir="${project.basedir}" failonerror="true">
+			    <arg value="install" />
+			  </exec>
               <echo>
       <!-- Bower  -->
               </echo>
