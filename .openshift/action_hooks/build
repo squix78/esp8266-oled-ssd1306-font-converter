@@ -7,7 +7,11 @@
 # Need to clean node-gyp up as somehow it got corrupt after a few build
 rm -rf ${OPENSHIFT_TMP_DIR}/.node-gyp
 cd ${OPENSHIFT_REPO_DIR}
-CLEAN_NPM_INSTALL=`node -e 'var config_diy=require("./config_diy");console.log(config_diy.nodejs.cleanNPMInstall)'`
+if [ $USE_IOJS == "true" ]; then
+  CLEAN_NPM_INSTALL=`node -e 'var config_diy=require("./config_diy");console.log(config_diy.iojs.cleanNPMInstall)'`
+else
+  CLEAN_NPM_INSTALL=`node -e 'var config_diy=require("./config_diy");console.log(config_diy.nodejs.cleanNPMInstall)'`
+fi
 
 NODE_DIR=${OPENSHIFT_DATA_DIR}node-${NODE_VERSION}
 if [ $CLEAN_NPM_INSTALL == "true" ]; then

@@ -3,11 +3,28 @@
 # available.  Otherwise it will execute while your application is stopped
 # before the build step.  This script gets executed directly, so it
 # could be python, php, ruby, etc.
+  
+# Determine hardware type for pre-compiled linux binary
+if [ "`uname -i`" == "x86_64" ]; then
+  TYPE="linux-x64"
+else
+  TYPE="linux-x86"
+fi
 
 # Will need around 200MB free disk space
 cd ${OPENSHIFT_REPO_DIR}
-NODE_VERSION=`node -e 'var config_diy=require("./config_diy");console.log(config_diy.nodejs.version)'`
-REMOVE_OLD=`node -e 'var config_diy=require("./config_diy");console.log(config_diy.nodejs.removeOld)'`
+USE_IOJS=`node -e 'var config_diy=require("./config_diy");console.log(config_diy.use_iojs)'`
+if [ $USE_IOJS == "true" ]; then
+  NODE_VERSION=`node -e 'var config_diy=require("./config_diy");console.log(config_diy.iojs.version)'`
+  REMOVE_OLD=`node -e 'var config_diy=require("./config_diy");console.log(config_diy.iojs.removeOld)'`
+  GZIP_FILENAME="iojs-$NODE_VERSION-$TYPE"
+  BINARY="https://iojs.org/dist/$NODE_VERSION/$GZIP_FILE.tar.gz"
+else
+  NODE_VERSION=`node -e 'var config_diy=require("./config_diy");console.log(config_diy.nodejs.version)'`
+  REMOVE_OLD=`node -e 'var config_diy=require("./config_diy");console.log(config_diy.nodejs.removeOld)'`
+  GZIP_FILENAME="node-$NODE_VERSION-$TYPE"
+  BINARY="http://nodejs.org/dist/$NODE_VERSION/$GZIP_FILE.tar.gz"
+fi
 
 if [ ! -e ${OPENSHIFT_DATA_DIR}node-${NODE_VERSION}/bin/node ]; then
   # Delete previous version
@@ -16,19 +33,12 @@ if [ ! -e ${OPENSHIFT_DATA_DIR}node-${NODE_VERSION}/bin/node ]; then
     rm -rf ${OPENSHIFT_DATA_DIR}node-*
   fi
   cd ${OPENSHIFT_TMP_DIR}
-  # Determine hardware type for pre-compiled linux binary
-  if [ "`uname -i`" == "x86_64" ]; then
-    TYPE="x64"
-  else
-    TYPE="x86"
-  fi
-  BINARY="http://nodejs.org/dist/$NODE_VERSION/node-$NODE_VERSION-linux-$TYPE.tar.gz"
   # Check pre-compiled linux binary
   if [ "`curl -Is $BINARY | grep '200 OK'`" != '' ]; then
-    curl -L -o node-${NODE_VERSION}-linux-${TYPE}.tar.gz $BINARY
-    tar -xvzf node-${NODE_VERSION}-linux-${TYPE}.tar.gz
-    mv node-${NODE_VERSION}-linux-${TYPE} ${OPENSHIFT_DATA_DIR}node-${NODE_VERSION}
-    rm -f node-${NODE_VERSION}-linux-${TYPE}.tar.gz
+    curl -L -o $GZIP_FILENAME.tar.gz $BINARY
+    tar -xvzf $GZIP_FILENAME.tar.gz
+    mv $GZIP_FILENAME ${OPENSHIFT_DATA_DIR}node-${NODE_VERSION}
+    rm -f $GZIP_FILENAME.tar.gz
   else
     # Don't have pre-compiled binary, compile from source. Determine tarball url
     tarball=''
@@ -56,6 +66,7 @@ fi
 # Create environment variables for this version
 cat <<EOF > ${OPENSHIFT_DATA_DIR}/node.sh
 NODE_VERSION=${NODE_VERSION}
+USE_IOJS=${USE_IOJS}
 export TMPDIR=\${OPENSHIFT_TMP_DIR}
 if [ -z \$NODE_DEFINED ]; then
   export NODE_DEFINED=1

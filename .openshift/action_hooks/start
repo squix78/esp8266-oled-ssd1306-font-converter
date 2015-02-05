@@ -5,7 +5,11 @@
 #nohup $OPENSHIFT_REPO_DIR/diy/testrubyserver.rb $OPENSHIFT_INTERNAL_IP $OPENSHIFT_REPO_DIR/diy > $OPENSHIFT_LOG_DIR/server.log 2>&1 &
 . ${OPENSHIFT_DATA_DIR}node.sh
 cd ${OPENSHIFT_REPO_DIR}
-SEPARATE_ERROR_LOG=`node -e 'var config_diy=require("./config_diy");console.log(config_diy.nodejs.separateErrorLog)'`
+if [ $USE_IOJS == "true" ]; then
+  SEPARATE_ERROR_LOG=`node -e 'var config_diy=require("./config_diy");console.log(config_diy.iojs.separateErrorLog)'`
+else
+  SEPARATE_ERROR_LOG=`node -e 'var config_diy=require("./config_diy");console.log(config_diy.nodejs.separateErrorLog)'`
+fi
 # Extract node.js script from package.json
 APP_FILE=`node -e 'var package=require("./package.json");console.log(package.scripts.start.split(/ /)[1]);'`
 
