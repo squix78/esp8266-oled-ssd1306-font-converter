@@ -1,7 +1,7 @@
 openshift-diy-nodejs08
 ========================
 
-Thanks for the great work by [razorinc](https://github.com/razorinc/redis-openshift-example) and [creationix](https://github.com/creationix/nvm/), this repo let you test node.js v0.8 or above with OpenShift DIY Cartridge. It will first check for pre-compiled linux version, then compile from source if not found.
+Thanks for the great work by [razorinc](https://github.com/razorinc/redis-openshift-example) and [creationix](https://github.com/creationix/nvm/), this repo let you test node.js (v0.8 or above) or io.js (v1.0.0 or above) with OpenShift DIY Cartridge. It will first check for pre-compiled linux version, then compile from source if not found.
 
 [node-supervisor](https://github.com/isaacs/node-supervisor) is used to automatically restart the node.js app if somehow crashed.
 
@@ -80,19 +80,29 @@ Settings
 
 Edit `config_diy.json`
 
-    "nodejs": {
-      "version": "v0.10.26",
-      "removeOld": true,
-      "separateErrorLog": true,
-      "cleanNPMInstall": false
+    {
+      "use_iojs": true,
+      "iojs": {
+        "version": "v1.1.0",
+        "removeOld": true,
+        "separateErrorLog": true,
+        "cleanNPMInstall": false
+      },
+      "nodejs": {
+        "version": "v0.10.36",
+        "removeOld": true,
+        "separateErrorLog": true,
+        "cleanNPMInstall": false
+      }
     }
 
-- `version`: change node.js version
-- `removeOld`: delete previous installed node.js binarys
+- `use_iojs`: use io.js instead of node.js
+- `version`: change io.js/node.js version
+- `removeOld`: delete previous installed io.js/node.js binarys
 - `separateErrorLog`: If `true`, error will be redirected to `${OPENSHIFT_DIY_LOG_DIR}/error.log`, otherwise will be redirected into `${OPENSHIFT_DIY_LOG_DIR}/server.log`
 - `cleanNPMInstall`: If `true`, the `node_modules/` directory will be deleted before execute `npm install`. Set it to `false` to reduce the time required to re-deploy (especially when there are native code modules such as `bcrypt`).
 
 `commit` and then `push` to reflect the changes to the OpenShift app.
 
-**Note that `v0.6.x` won't work with this method.**
+**Note that node.js `v0.6.x` won't work with this method.**
 
