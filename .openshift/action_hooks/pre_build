@@ -18,12 +18,12 @@ if [ $USE_IOJS == "true" ]; then
   NODE_VERSION=`node -e 'var config_diy=require("./config_diy");console.log(config_diy.iojs.version)'`
   REMOVE_OLD=`node -e 'var config_diy=require("./config_diy");console.log(config_diy.iojs.removeOld)'`
   GZIP_FILENAME="iojs-$NODE_VERSION-$TYPE"
-  BINARY="https://iojs.org/dist/$NODE_VERSION/$GZIP_FILE.tar.gz"
+  BINARY="https://iojs.org/dist/$NODE_VERSION/$GZIP_FILENAME.tar.gz"
 else
   NODE_VERSION=`node -e 'var config_diy=require("./config_diy");console.log(config_diy.nodejs.version)'`
   REMOVE_OLD=`node -e 'var config_diy=require("./config_diy");console.log(config_diy.nodejs.removeOld)'`
   GZIP_FILENAME="node-$NODE_VERSION-$TYPE"
-  BINARY="http://nodejs.org/dist/$NODE_VERSION/$GZIP_FILE.tar.gz"
+  BINARY="http://nodejs.org/dist/$NODE_VERSION/$GZIP_FILENAME.tar.gz"
 fi
 
 if [ ! -e ${OPENSHIFT_DATA_DIR}node-${NODE_VERSION}/bin/node ]; then
