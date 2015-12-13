@@ -209,12 +209,6 @@
               osfamily="windows" failonerror="true">
                   <arg line="/c npm install"/>
               </exec>
-              <!-- 
-              <exec executable="bash" dir="${project.basedir}"
-              osfamily="unix" failonerror="true">
-                  <arg line="npm install"/>
-              </exec>
-               -->
               <exec  executable="./npmUpdate.sh" dir="${project.basedir}" failonerror="true">
 			    <arg value="" />
 			  </exec>
@@ -225,10 +219,6 @@
               osfamily="windows" resultproperty="cmdresult">
                   <arg line="/c bower --no-color install"/>
               </exec>
-              <exec executable="bash" dir="${project.basedir}"
-              osfamily="unix" resultproperty="cmdresult">
-                  <arg line="bower --no-color install"/>
-              </exec>
               <echo>
       <!-- GRUNT  -->
               </echo>
@@ -236,10 +226,7 @@
               osfamily="windows" resultproperty="cmdresult">
                   <arg line="/c grunt --no-color "/>
               </exec>
-              <exec executable="bash" dir="${project.basedir}"
-              osfamily="unix" resultproperty="cmdresult">
-                  <arg line="grunt --no-color"/>
-              </exec>
+
 
           </target>
       </configuration>
