@@ -215,8 +215,8 @@
                   <arg line="npm install"/>
               </exec>
                -->
-              <exec  executable="./npmUpdate.sh" dir="${project.basedir}" failonerror="true">
-			    <arg value="" />
+              <exec  executable="npm" dir="${project.basedir}" failonerror="true">
+			    <arg value="install" />
 			  </exec>
               <echo>
       <!-- Bower  -->
