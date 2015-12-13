@@ -7,7 +7,7 @@
  * in accordance with the terms and conditions stipulated in the agreement/contract under which 
  * the program(s) have been supplied.
  */
-package ch.squix.template.rest.ping;
+package ch.squix.esp8266.fontconverter.rest.ping;
 
 import lombok.Data;
 

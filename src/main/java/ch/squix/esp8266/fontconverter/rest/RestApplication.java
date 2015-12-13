@@ -1,10 +1,11 @@
-package ch.squix.template.rest;
+package ch.squix.esp8266.fontconverter.rest;
 
 import org.restlet.Application;
 import org.restlet.Restlet;
 import org.restlet.routing.Router;
 
-import ch.squix.template.rest.ping.PingResource;
+import ch.squix.esp8266.fontconverter.rest.font.FontFamilyResource;
+import ch.squix.esp8266.fontconverter.rest.ping.PingResource;
 
 public class RestApplication extends Application {
 
@@ -20,6 +21,7 @@ public class RestApplication extends Application {
         // new instance of HelloWorldResource.
         Router router = new Router(getContext());
         router.attach("/ping", PingResource.class);
+        router.attach("/font", FontFamilyResource.class);
 
         return router;
     }

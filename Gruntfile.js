@@ -13,6 +13,7 @@ module.exports = function(grunt) {
         gruntfile: {
           src: 'Gruntfile.js'
         },
+   
         bower_concat: {
           all: {
             dest: 'src/main/webapp/dist/lib.js',
@@ -24,7 +25,8 @@ module.exports = function(grunt) {
         concat: {   
             dist: {
                 src: [
-                    'src/main/webapp/js/*.js'  // This specific file
+                    'src/main/webapp/js/*.js',  // This specific file
+                    'src/main/webapp/js/controllers/*.js'
                 ],
                 dest: 'src/main/webapp/dist/app.js',
             }
@@ -57,7 +59,7 @@ module.exports = function(grunt) {
               }
             },
             scripts: {
-                files: ['src/main/webapp/js/*.js'],
+                files: ['src/main/webapp/js/*.js', 'src/main/webapp/js/controllers/*.js'],
                 tasks: ['concat', 'uglify'],
                 options: {
                     spawn: false,
@@ -81,6 +83,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-bower-concat');
     grunt.loadNpmTasks('livereloadx');
+    grunt.loadNpmTasks('main-bower-files');
     
 
     // 4. Where we tell Grunt what to do when we type "grunt" into the terminal.

@@ -1,22 +1,18 @@
-package ch.squix.template.rest.ping;
+package ch.squix.esp8266.fontconverter.rest.ping;
 
 import java.io.UnsupportedEncodingException;
 
 import org.restlet.resource.Get;
 import org.restlet.resource.ServerResource;
 
-import com.google.apphosting.api.ApiProxy;
-import com.google.apphosting.api.ApiProxy.Environment;
-
 
 public class PingResource extends ServerResource {
 
     @Get(value = "json")
     public PingDto execute() throws UnsupportedEncodingException {
-        Environment env = ApiProxy.getCurrentEnvironment();
         PingDto dto = new PingDto();
-        dto.setAppName(env.getAppId());
-        dto.setVersionId(env.getVersionId());
+        dto.setAppName("ESP8266");
+        dto.setVersionId("1.0.0");
         return dto;
     }
 

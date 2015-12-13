@@ -3,7 +3,8 @@
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <property name="java-output-path" value="/extraleague/target/classes"/>
-        <property name="context-root" value="appengine-template"/>
+        <property name="context-root" value="esp8266-oled-ssd1306-font-converter"/>
     </wb-module>
 </project-modules>

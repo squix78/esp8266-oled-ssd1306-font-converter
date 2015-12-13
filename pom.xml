@@ -7,12 +7,13 @@
   <version>1.0-SNAPSHOT</version>
 
   <groupId>ch.squix</groupId>
-  <artifactId>appengine-template</artifactId>
+  <artifactId>esp8266-oled-ssd1306-font-converter</artifactId>
 
   <properties>
     <appengine.app.version>1</appengine.app.version>
-    <appengine.target.version>1.9.6</appengine.target.version>
+    <appengine.target.version>1.9.30</appengine.target.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <restlet-version>2.3.5</restlet-version>
   </properties>
 
   <repositories>
@@ -27,18 +28,9 @@
     </repository>
   </repositories>
 
+
   <dependencies>
-    <!-- Compile/runtime dependencies -->
-    <dependency>
-      <groupId>com.google.appengine</groupId>
-      <artifactId>appengine-api-1.0-sdk</artifactId>
-      <version>${appengine.target.version}</version>
-    </dependency>
-	<dependency>
-		<groupId>com.google.appengine</groupId>
-		<artifactId>appengine-api-labs</artifactId>
-        <version>${appengine.target.version}</version>
-	</dependency>
+
 
     <dependency>
       <groupId>javax.servlet</groupId>
@@ -71,24 +63,24 @@
 
     <!-- Rest -->
     <dependency>
-      <groupId>org.restlet.gae</groupId>
+      <groupId>org.restlet.jee</groupId>
       <artifactId>org.restlet</artifactId>
-      <version>2.1.2</version>
+      <version>${restlet-version}</version>
     </dependency>
     <dependency>
-      <groupId>org.restlet.gae</groupId>
+      <groupId>org.restlet.jee</groupId>
       <artifactId>org.restlet.ext.servlet</artifactId>
-      <version>2.1.2</version>
+      <version>${restlet-version}</version>
     </dependency>
     <dependency>
-      <groupId>org.restlet.gae</groupId>
+      <groupId>org.restlet.jee</groupId>
       <artifactId>org.restlet.ext.jackson</artifactId>
-      <version>2.1.2</version>
+      <version>${restlet-version}</version>
     </dependency>
     <dependency>
-      <groupId>org.restlet.gae</groupId>
+      <groupId>org.restlet.jee</groupId>
       <artifactId>org.restlet.ext.json</artifactId>
-      <version>2.1.2</version>
+      <version>${restlet-version}</version>
     </dependency>
     <dependency>
       <groupId>org.codehaus.jackson</groupId>
@@ -101,12 +93,6 @@
       <version>1.9.12</version>
     </dependency>
 
-    <!-- App Engine -->
-    <dependency>
-      <groupId>com.googlecode.objectify</groupId>
-      <artifactId>objectify</artifactId>
-      <version>5.0.2</version>
-    </dependency>
 
     <!-- utils -->
     <dependency>
@@ -133,19 +119,6 @@
       <scope>provided</scope>
     </dependency>
 
-    <!-- Test Dependencies -->
-    <dependency>
-      <groupId>com.google.appengine</groupId>
-      <artifactId>appengine-testing</artifactId>
-      <version>${appengine.target.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.google.appengine</groupId>
-      <artifactId>appengine-api-stubs</artifactId>
-      <version>${appengine.target.version}</version>
-      <scope>test</scope>
-    </dependency>
   </dependencies>
 
   <build>
@@ -207,17 +180,15 @@
         </configuration>
       </plugin>
 
-      <plugin>
-          <groupId>com.google.appengine</groupId>
-          <artifactId>appengine-maven-plugin</artifactId>
-          <version>${appengine.target.version}</version>
-          <configuration>
-          <jvmFlags>
-              <jvmFlag>-Xdebug</jvmFlag>
-              <jvmFlag>-agentlib:jdwp=transport=dt_socket,address=8000,server=y,suspend=n</jvmFlag>
-           </jvmFlags>
-          </configuration>
-      </plugin>
+        <plugin>
+            <groupId>org.apache.tomcat.maven</groupId>
+            <artifactId>tomcat7-maven-plugin</artifactId>
+            <version>2.2</version>
+            <configuration>
+                <path>/</path>
+                <contextReloadable>true</contextReloadable>
+            </configuration>
+        </plugin>
 
       <plugin>
         <artifactId>maven-antrun-plugin</artifactId>
