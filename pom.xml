@@ -226,7 +226,7 @@
               osfamily="windows" resultproperty="cmdresult">
                   <arg line="/c grunt --no-color "/>
               </exec>
-
+  
 
           </target>
       </configuration>
