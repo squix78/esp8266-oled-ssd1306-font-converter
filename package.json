@@ -1,19 +1,38 @@
 {
-  "name": "appengine-template",
-  "version": "0.0.1",
+  "name": "OpenShift-Sample-App",
+  "version": "1.0.0",
+  "description": "OpenShift Sample Application",
+  "keywords": [
+    "OpenShift",
+    "Node.js",
+    "application",
+    "openshift"
+  ],
+  "author": {
+    "name": "OpenShift",
+    "email": "ramr@example.org",
+    "url":  "http://openshift.redhat.com/"
+  },
+  "homepage": "http://openshift.redhat.com/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/squix78/appengine-template.git"
+    "url": "https://gitub.com/openshift/crankcase"
   },
-  "devDependencies": {
-    "grunt": "~0.4.4",
-    "grunt-bower-concat": "0.2.4",
-    "grunt-bower-install": "1.6.0",
-    "grunt-contrib-concat": "~0.4.0",
-    "grunt-contrib-less": "0.11.0",
-    "grunt-contrib-uglify": "0.4.0",
-    "grunt-contrib-watch": "~0.6.1",
-    "livereloadx": "~0.3.3",
-    "main-bower-files": "2.9.0"
+
+  "engines": {
+    "node": ">= 0.6.0",
+    "npm": ">= 1.0.0"
+  },
+
+  "dependencies": {
+    "express": "2.5.x"
+  },
+  "devDependencies": {},
+  "bundleDependencies": [],
+
+  "private": true,
+
+  "scripts": {  
+   "start": "node server.js"
   }
 }
