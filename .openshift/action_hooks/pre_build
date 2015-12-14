@@ -16,6 +16,6 @@ ensure_node_is_installed
 #  We need to move the package.json file out of the way in pre_build, so
 #  that the OpenShift git post-receive hook doesn't try and use the old
 #  npm version to install the dependencies.
-mv  -v "${OPENSHIFT_REPO_DIR}/package.json"  "$(get_node_tmp_dir)"
+#mv  -v "${OPENSHIFT_REPO_DIR}/package.json"  "$(get_node_tmp_dir)"
 
 
