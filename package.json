@@ -1,9 +1,7 @@
-
-
 {
-  "name": "OpenShift-Sample-App",
-  "version": "1.0.0",
-  "description": "OpenShift Sample Application",
+  "name": "nodejs-Custom-Version-Sample",
+  "version": "1.0.1",
+  "description": "OpenShift Node.js Custom Version Sample Application",
   "keywords": [
     "OpenShift",
     "Node.js",
@@ -11,24 +9,14 @@
     "openshift"
   ],
   "author": {
-    "name": "OpenShift",
+    "name": "ramr",
     "email": "ramr@example.org",
-    "url":  "http://openshift.redhat.com/"
+    "url":  "http://www.openshift.com/"
   },
-  "homepage": "http://openshift.redhat.com/",
+  "homepage": "http://www.openshift.com/",
   "repository": {
     "type": "git",
-    "url": "https://gitub.com/openshift/crankcase"
-  },
-  "devDependencies": {
-    "grunt": "~0.4.5",
-    "grunt-bower-concat": "0.6.0",
-    "grunt-bower-install": "1.6.0",
-    "grunt-contrib-concat": "~0.5.1",
-    "grunt-contrib-less": "1.1.0",
-    "grunt-contrib-uglify": "0.11.0",
-    "grunt-contrib-watch": "~0.6.1",
-    "livereloadx": "~0.3.9"
+    "url": "https://gitub.com/ramr/nodejs-custom-version-openshift"
   },
 
   "engines": {
@@ -37,13 +25,11 @@
   },
 
   "dependencies": {
-    "express": "2.5.x"
+    "express": "*"
   },
+  "devDependencies": {},
   "bundleDependencies": [],
 
   "private": true,
-
-  "scripts": {  
-   "start": "node server.js"
-  }
+  "main": "server.js"
 }

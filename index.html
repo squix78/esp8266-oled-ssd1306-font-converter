@@ -89,6 +89,7 @@
   }
   .brand .brand-image {
     float: left;
+    border: none;
   }
   .brand .brand-text {
     float: left;
@@ -111,6 +112,11 @@
   .brand:after {
     clear: both;
   }
+  .env {
+    font-size: 16px;
+    line-height: 16px;
+    color: #298A08;
+  }
   </style>
 </head>
 <body>
@@ -121,8 +127,13 @@
     <div class="brand-text"><strong>Open</strong>Shift</div>
   </a>
   <h1>
-    Welcome to OpenShift
+    Welcome to OpenShift - &lt;your custom Node.js version here&gt;
   </h1>
+  <div>
+    <pre>
+      <a href="/env" class="env">Click here to view your Node.js process version and env.</a>
+    </pre>
+  </div>
   <p>
     Place your application here
   </p>
