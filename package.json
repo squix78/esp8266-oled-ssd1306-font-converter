@@ -27,7 +27,7 @@
   "dependencies": {
     "express": "*"
   },
-  "devDependencies": {
+  "devDependencies": { 
     "grunt": "~0.4.4",
     "grunt-bower-concat": "0.2.4",
     "grunt-bower-install": "1.6.0",
