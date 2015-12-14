@@ -19,7 +19,7 @@ tmp_package_json="$(get_node_tmp_dir)/package.json"
 if [ -f "$tmp_package_json" ]; then
    #  Only overlay it if there is no current package.json file.
    [ -f "${OPENSHIFT_REPO_DIR}/package.json" ]  ||    \
-      mv "$tmp_package_json" "${OPENSHIFT_REPO_DIR}/package.json"
+      mv -v "$tmp_package_json" "${OPENSHIFT_REPO_DIR}/package.json"
 fi
 
 
