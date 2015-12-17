@@ -209,9 +209,11 @@
               osfamily="windows" failonerror="true">
                   <arg line="/c npm install"/>
               </exec>
+              <!-- 
               <exec  executable="./npmUpdate.sh" dir="${project.basedir}" failonerror="true">
 			    <arg value="" />
 			  </exec>
+               -->
               <echo>
       <!-- Bower  -->
               </echo>
