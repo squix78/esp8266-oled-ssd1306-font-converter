@@ -12,51 +12,40 @@ import java.io.PrintStream;
  * Hello world!
  * 
  */
-public class TtfBitmapFontConverter {
+public class FontConverter {
 
     private static final int END_CHAR = 256;
     private static final int START_CHAR = 32;
     private Graphics g;
     private BufferedImage image;
 
-    public TtfBitmapFontConverter(Font font) {
+    public FontConverter(Font font) {
         image = new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB);
         g = image.getGraphics();
         g.setFont(font);
     }
 
-    public void printFontArray(PrintStream writer) {
+    public void printFontArray(StringBuilder builder) {
         String fontName = g.getFont().getFontName() + "_" + getFontStyle() + "_"
                 + g.getFont().getSize();
-        writer.println("const char " + fontName + "[] PROGMEM = {");
-        writeHexValue(writer, "Width", getMaxCharWidth());
-        writeHexValue(writer, "Height", getMaxCharHeight());
-        writeHexValue(writer, "First Char", START_CHAR);
-        writeHexValue(writer, "Numbers of Chars", END_CHAR - START_CHAR);
-        writer.println();
-        writer.println("\t// Char Widths:");
+        builder.append("const char " + fontName + "[] PROGMEM = {\n");
+        writeHexValue(builder, "Width", getMaxCharWidth());
+        writeHexValue(builder, "Height", getMaxCharHeight());
+        writeHexValue(builder, "First Char", START_CHAR);
+        writeHexValue(builder, "Numbers of Chars", END_CHAR - START_CHAR);
+        builder.append("\n");
+        builder.append("\t// Char Widths:\n");
         for (int i = START_CHAR; i < END_CHAR; i++) {
-            writeHexValue(writer, String.valueOf(i), g.getFontMetrics().charWidth((char) i));
+            writeHexValue(builder, String.valueOf(i), g.getFontMetrics().charWidth((char) i));
         }
 
-        // writer.println();
-        // writer.println("\t// Char Start Positions:");
-        //
-        // // start after the end of the char widths part
-        // int currentStartPos = 5 + END_CHAR-START_CHAR;
-        // for (int i = START_CHAR; i < END_CHAR; i++) {
-        // writeHexValue(writer, String.valueOf(i), currentStartPos);
-        // int height = getMaxCharHeight();
-        // int width = g.getFontMetrics().charWidth((char)i);
-        // currentStartPos += width * height / 8 + 1;
-        // }
 
-        writer.println();
-        writer.println("\t// Font Data:");
+        builder.append("\n");
+        builder.append("\t// Font Data:\n");
         for (int i = START_CHAR; i < END_CHAR; i++) {
-            writeCharacterData(writer, (char) i, i == END_CHAR - 1);
+            writeCharacterData(builder, (char) i, i == END_CHAR - 1);
         }
-        writer.println("};");
+        builder.append("};\n");
     }
 
     private String getFontStyle() {
@@ -75,7 +64,7 @@ public class TtfBitmapFontConverter {
     }
 
 
-    private void writeCharacterData(PrintStream writer, char code, boolean isLastChar) {
+    private void writeCharacterData(StringBuilder builder, char code, boolean isLastChar) {
         g.setColor(Color.WHITE);
         g.fillRect(0, 0, 450, 250);
         g.setColor(Color.BLACK);
@@ -100,21 +89,21 @@ public class TtfBitmapFontConverter {
                 bitNum++;
             }
         }
-        writer.print("\t");
+        builder.append("\t");
         for (int i = 0; i < arraySize; i++) {
             if (i > 0) {
-                writer.print(",");
+                builder.append(",");
             }
-            writer.print(String.format("0x%02X", character[i]));
+            builder.append(String.format("0x%02X", character[i]));
         }
         if (!isLastChar) {
-            writer.print(",");
+            builder.append(",");
         }
-        writer.println(" // " + (int) code);
+        builder.append(" // " + (int) code + "\n");
     }
 
-    private void writeHexValue(PrintStream writer, String label, int value) {
-        writer.println(String.format("\t0x%02X, // %s: %d", value, label, value));
+    private void writeHexValue(StringBuilder builder, String label, int value) {
+        builder.append(String.format("\t0x%02X, // %s: %d\n", value, label, value));
     }
 
     public int getCharArraySize() {
@@ -205,16 +194,5 @@ public class TtfBitmapFontConverter {
         return g;
     }
 
-    public static void main(String[] args) throws InterruptedException, IOException {
-
-
-        TtfBitmapFontConverter app = new TtfBitmapFontConverter(new Font("Arial", Font.PLAIN, 10));
-        app.printFontArray(System.out);
-        app = new TtfBitmapFontConverter(new Font("Arial", Font.PLAIN, 16));
-        app.printFontArray(System.out);
-        app = new TtfBitmapFontConverter(new Font("Arial", Font.PLAIN, 24));
-        app.printFontArray(System.out);
-
-    }
 
 }

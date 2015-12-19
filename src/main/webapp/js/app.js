@@ -11,4 +11,14 @@ angular.module('FontConverter', ['ngRoute', 'ngResource'])
 })
 .factory('Ping', ['$resource', function($resource) {
     return $resource('/rest/ping');
-}]);
+}])
+.factory('FontFamilies', ['$resource', function($resource) {
+    return $resource('/rest/fontFamilies');
+}])
+.factory('Fonts', ['$resource', function($resource) {
+    return $resource('/rest/fonts/:fontFamily');
+}])
+.factory('FontArray', ['$resource', function($resource) {
+	return $resource('/rest/fontArray');
+}])
+;
