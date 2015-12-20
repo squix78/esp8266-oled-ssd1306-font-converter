@@ -34,7 +34,7 @@ public class FontPreviewResource extends ServerResource {
         Graphics2D graphics = newImage.createGraphics();
         graphics.drawImage(oldImage, 0, 0, null);
         graphics.setFont(font);
-        graphics.setClip(8, 65, 128 * 2, 64 * 2);
+        graphics.setClip(8, 60, 128 * 2, 64 * 2);
 
         drawString(graphics, "ABC abc 123 $€°. The quick brown fox jumps over the lazy dog.", 8,
                 63 + graphics.getFontMetrics().getAscent(), 128 * 2);
