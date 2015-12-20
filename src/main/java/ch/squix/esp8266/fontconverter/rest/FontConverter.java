@@ -28,6 +28,7 @@ public class FontConverter {
     public void printFontArray(StringBuilder builder) {
         String fontName = g.getFont().getFontName() + "_" + getFontStyle() + "_"
                 + g.getFont().getSize();
+        builder.append("// OLED library version < 2.0.0\n");
         builder.append("const char " + fontName + "[] PROGMEM = {\n");
         writeHexValue(builder, "Width", getMaxCharWidth());
         writeHexValue(builder, "Height", getMaxCharHeight());

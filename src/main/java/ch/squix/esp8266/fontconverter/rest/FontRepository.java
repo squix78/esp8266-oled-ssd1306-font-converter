@@ -28,7 +28,7 @@ public class FontRepository {
     }
 
     public static void parseFontNames(List<File> fontFiles, File folder) throws URISyntaxException {
-        if (!folder.exists()) {
+        if (!folder.exists() || !folder.isDirectory()) {
             return;
         }
 

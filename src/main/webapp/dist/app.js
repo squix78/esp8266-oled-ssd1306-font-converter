@@ -31,8 +31,8 @@ angular.module('FontConverter').controller('MainController',
 	                   "3": {name:"Bold & Italic"}
 	  };
 	  $scope.fontArray = new FontArray();
-	  $scope.fontArray.name = "Arial";
-	  $scope.fontArray.style = 0;
+	  $scope.fontArray.name = "Dialog";
+	  $scope.fontArray.style = "0";
 	  $scope.fontArray.size = 16;
 	  
 	  $scope.fontFamilies = FontFamilies.query();
