@@ -6,7 +6,6 @@ import java.awt.GraphicsEnvironment;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,8 +14,7 @@ public class FontRepository {
 
     public static void registerResourceFonts() throws URISyntaxException {
         List<File> fontNames = new ArrayList<>();
-        URL url = FontRepository.class.getClassLoader().getResource("fonts/");
-        File dir = new File(url.toURI());
+        File dir = new File("/var/lib/openshift/566d81410c1e6676960001c5/app-root/data/fonts/");
         parseFontNames(fontNames, dir);
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         for (File file : fontNames) {
@@ -30,7 +28,9 @@ public class FontRepository {
     }
 
     public static void parseFontNames(List<File> fontFiles, File folder) throws URISyntaxException {
-
+        if (!folder.exists()) {
+            return;
+        }
 
         for (File nextFile : folder.listFiles()) {
             if (nextFile.isDirectory()) {
