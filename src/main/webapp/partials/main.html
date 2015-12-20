@@ -18,8 +18,10 @@
 	   <label for="size">Size</label>
 	   <input required id="size" class="form-control" type="text" ng-model="fontArray.size" value="16"/>
 	</div>
+	<div class="form-group">
+	 	<button ng-enabled="" type="submit" class="btn btn-primary" ng-click="getFontArray()">Create</button>
+	</div>
 	<img src="/rest/fontPreview/{{fontArray.name}}/{{fontArray.style}}/{{fontArray.size}}"/>
-	 <button ng-enabled="" type="submit" class="btn btn-primary" ng-click="getFontArray()">Create</button>
 	 <div class="form-group" ng-show="fontArray.fontArray">
 	 	 <label for="result">C Font File</label>
 		 <textarea id="result" class="form-control" rows="80" cols="80">
