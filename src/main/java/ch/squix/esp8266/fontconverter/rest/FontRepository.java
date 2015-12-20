@@ -1,34 +1,51 @@
 package ch.squix.esp8266.fontconverter.rest;
 
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.GraphicsEnvironment;
 import java.io.File;
+import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 public class FontRepository {
 
-    private static Map<String, String> fontMap = new HashMap<>();
+    public static void registerResourceFonts() throws URISyntaxException {
+        List<File> fontNames = new ArrayList<>();
+        URL url = FontRepository.class.getClassLoader().getResource("fonts/");
+        File dir = new File(url.toURI());
+        parseFontNames(fontNames, dir);
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        for (File file : fontNames) {
+            System.out.println(file.getName());
+            try {
+                ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, file));
+            } catch (IOException | FontFormatException e) {
+                // Handle exception
+            }
+        }
+    }
 
-    static {
+    public static void parseFontNames(List<File> fontFiles, File folder) throws URISyntaxException {
+
+
+        for (File nextFile : folder.listFiles()) {
+            if (nextFile.isDirectory()) {
+                parseFontNames(fontFiles, nextFile);
+            } else if (nextFile.getName().matches(".*ttf")) {
+                fontFiles.add(nextFile);
+
+            }
+        }
+
 
     }
 
-    public static List<String> getFontNames() throws URISyntaxException {
-        List<String> fontNames = new ArrayList<>();
-        URL url = FontRepository.class.getResource("fonts/");
-        if (url == null) {
-            // error - missing folder
-        } else {
-            File dir = new File(url.toURI());
-            for (File nextFile : dir.listFiles()) {
-                fontNames.add(nextFile.getName());
-            }
-        }
-        return fontNames;
+    public static void main(String[] args) throws URISyntaxException {
+        FontRepository.registerResourceFonts();
     }
 
 }

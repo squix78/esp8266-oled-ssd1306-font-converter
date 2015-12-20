@@ -1,6 +1,8 @@
 package ch.squix.esp8266.fontconverter.rest.preview;
 
 import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
@@ -34,11 +36,41 @@ public class FontPreviewResource extends ServerResource {
         graphics.setFont(font);
         graphics.setClip(8, 65, 128 * 2, 64 * 2);
 
-        graphics.drawString("ABC abc 123", 8, 63 + graphics.getFontMetrics().getAscent());
+        drawString(graphics, "ABC abc 123 $€°. The quick brown fox jumps over the lazy dog.", 8,
+                63 + graphics.getFontMetrics().getAscent(), 128 * 2);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         ImageIO.write(newImage, "png", baos);
         byte[] bytes = baos.toByteArray();
         ByteArrayRepresentation bar = new ByteArrayRepresentation(bytes, MediaType.IMAGE_PNG);
         getResponse().setEntity(bar);
+    }
+
+    public void drawString(Graphics g, String s, int x, int y, int width) {
+        // FontMetrics gives us information about the width,
+        // height, etc. of the current Graphics object's Font.
+        FontMetrics fm = g.getFontMetrics();
+
+        int lineHeight = fm.getHeight();
+
+        int curX = x;
+        int curY = y;
+
+        String[] words = s.split(" ");
+
+        for (String word : words) {
+            // Find out thw width of the word.
+            int wordWidth = fm.stringWidth(word + " ");
+
+            // If text exceeds the width, then move to next line.
+            if (curX + wordWidth >= x + width) {
+                curY += lineHeight;
+                curX = x;
+            }
+
+            g.drawString(word, curX, curY);
+
+            // Move over to the right for next word.
+            curX += wordWidth;
+        }
     }
 }
