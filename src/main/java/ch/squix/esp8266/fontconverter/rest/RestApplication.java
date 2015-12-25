@@ -7,10 +7,10 @@ import org.restlet.Restlet;
 import org.restlet.routing.Router;
 
 import ch.squix.esp8266.fontconverter.rest.font.FontResource;
+import ch.squix.esp8266.fontconverter.rest.font.preview.FontPreviewResource;
 import ch.squix.esp8266.fontconverter.rest.fontarray.FontArrayResource;
 import ch.squix.esp8266.fontconverter.rest.fontfamily.FontFamilyResource;
 import ch.squix.esp8266.fontconverter.rest.ping.PingResource;
-import ch.squix.esp8266.fontconverter.rest.preview.FontPreviewResource;
 
 public class RestApplication extends Application {
 

@@ -1,4 +1,4 @@
-package ch.squix.esp8266.fontconverter.rest.preview;
+package ch.squix.esp8266.fontconverter.rest.font.preview;
 
 import java.awt.Font;
 import java.awt.FontMetrics;
