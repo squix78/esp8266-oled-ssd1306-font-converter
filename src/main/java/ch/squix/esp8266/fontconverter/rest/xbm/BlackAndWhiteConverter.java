@@ -14,9 +14,9 @@ import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
-class FloyedSteinbergDither {
+public class BlackAndWhiteConverter {
 
-    static class C3 {
+    public static class C3 {
 
         int r, g, b;
 
@@ -76,6 +76,24 @@ class FloyedSteinbergDither {
         }
 
         return closest;
+    }
+
+    public static BufferedImage thresholdConverter(BufferedImage image) {
+        BufferedImage newImage = new BufferedImage(image.getWidth(), image.getHeight(),
+                BufferedImage.TYPE_BYTE_BINARY);
+        for (int y = 0; y < image.getHeight(); y++) {
+            for (int x = 0; x < image.getWidth(); x++) {
+                Color color = new Color(image.getRGB(x, y));
+                int grayValue = (color.getBlue() + color.getRed() + color.getGreen()) / 3;
+                if (grayValue > 127) {
+                    color = Color.WHITE;
+                } else {
+                    color = Color.BLACK;
+                }
+                newImage.setRGB(x, y, color.getRGB());
+            }
+        }
+        return newImage;
     }
 
     public static BufferedImage floydSteinbergDithering(BufferedImage img, C3 palette[]) {

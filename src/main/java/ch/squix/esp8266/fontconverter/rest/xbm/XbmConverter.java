@@ -8,7 +8,7 @@ import java.net.URL;
 
 import javax.imageio.ImageIO;
 
-import ch.squix.esp8266.fontconverter.rest.xbm.FloyedSteinbergDither.C3;
+import ch.squix.esp8266.fontconverter.rest.xbm.BlackAndWhiteConverter.C3;
 
 
 public class XbmConverter {
@@ -21,8 +21,8 @@ public class XbmConverter {
             C3[] palette = new C3[]{new C3(0, 0, 0), // black
                     new C3(255, 255, 255) // white
             };
-            FloyedSteinbergDither dither = new FloyedSteinbergDither();
-            BufferedImage target = FloyedSteinbergDither.floydSteinbergDithering(source, palette);
+            BlackAndWhiteConverter dither = new BlackAndWhiteConverter();
+            BufferedImage target = BlackAndWhiteConverter.floydSteinbergDithering(source, palette);
             // BufferedImage target = source;
             int width = source.getWidth();
             width = width % 8 == 0 ? width : ((width / 8) + 1) * 8;

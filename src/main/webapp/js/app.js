@@ -5,6 +5,10 @@ angular.module('FontConverter', ['ngRoute', 'ngResource'])
     	controller : 'MainController',
     	templateUrl : 'partials/main.html'
     })
+    .when('/xbm', {
+    	controller : 'XbmController',
+    	templateUrl : 'partials/xbm.html'
+    })
     .otherwise({
        redirectTo: '/home'
     });
@@ -21,4 +25,10 @@ angular.module('FontConverter', ['ngRoute', 'ngResource'])
 .factory('FontArray', ['$resource', function($resource) {
 	return $resource('/rest/fontArray');
 }])
+.factory('XbmPreview', ['$resource', function($resource) {
+	return $resource('/rest/xbmPreview');
+}])
+.filter('htmlEncode', function() {
+  return window.encodeURIComponent;
+});
 ;

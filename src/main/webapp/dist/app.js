@@ -5,6 +5,10 @@ angular.module('FontConverter', ['ngRoute', 'ngResource'])
     	controller : 'MainController',
     	templateUrl : 'partials/main.html'
     })
+    .when('/xbm', {
+    	controller : 'XbmController',
+    	templateUrl : 'partials/xbm.html'
+    })
     .otherwise({
        redirectTo: '/home'
     });
@@ -21,6 +25,12 @@ angular.module('FontConverter', ['ngRoute', 'ngResource'])
 .factory('FontArray', ['$resource', function($resource) {
 	return $resource('/rest/fontArray');
 }])
+.factory('XbmPreview', ['$resource', function($resource) {
+	return $resource('/rest/xbmPreview');
+}])
+.filter('htmlEncode', function() {
+  return window.encodeURIComponent;
+});
 ;
 angular.module('FontConverter').controller('MainController', 
 	function($scope, $rootScope, $resource, $location, $routeParams, FontFamilies, Fonts, FontArray) {
@@ -43,4 +53,9 @@ angular.module('FontConverter').controller('MainController',
 			 console.log($scope.fontArray.fontArray);
 		 });
 	  };
+  });
+angular.module('FontConverter').controller('XbmController', 
+	function($scope, $rootScope, $resource, $location, $routeParams, FontFamilies, Fonts, FontArray) {
+	 	$scope.imageDefinition = {};
+	 	$scope.imageDefinition.url = "https://upload.wikimedia.org/wikipedia/commons/8/81/2012_Suedchinesischer_Tiger.JPG";
   });

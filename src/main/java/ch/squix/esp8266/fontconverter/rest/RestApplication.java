@@ -11,6 +11,8 @@ import ch.squix.esp8266.fontconverter.rest.font.preview.FontPreviewResource;
 import ch.squix.esp8266.fontconverter.rest.fontarray.FontArrayResource;
 import ch.squix.esp8266.fontconverter.rest.fontfamily.FontFamilyResource;
 import ch.squix.esp8266.fontconverter.rest.ping.PingResource;
+import ch.squix.esp8266.fontconverter.rest.time.TimeResource;
+import ch.squix.esp8266.fontconverter.rest.xbm.preview.XbmPreviewResource;
 
 public class RestApplication extends Application {
 
@@ -36,6 +38,8 @@ public class RestApplication extends Application {
         router.attach("/fonts", FontResource.class);
         router.attach("/fontArray", FontArrayResource.class);
         router.attach("/fontPreview/{fontName}/{fontStyle}/{fontSize}", FontPreviewResource.class);
+        router.attach("/xbmPreview", XbmPreviewResource.class);
+        router.attach("/time", TimeResource.class);
 
         return router;
     }
