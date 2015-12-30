@@ -42,11 +42,11 @@ public class TimeResource extends ServerResource {
 
         String timeFormat = inDto.getTimeFormat();
         if (!StringUtils.isNullOrEmpty(timeFormat)) {
-            outDto.setTimeFormatted(dateTime.toString(timeFormat));
+            outDto.setTimeFormatted(dateTime.toString(timeFormat, locale));
         }
         String dateFormat = inDto.getDateFormat();
         if (!StringUtils.isNullOrEmpty(dateFormat)) {
-            outDto.setDateFormatted(dateTime.toString(inDto.getDateFormat()));
+            outDto.setDateFormatted(dateTime.toString(dateFormat, locale));
         }
         return outDto;
     }
