@@ -26,6 +26,7 @@ public class TimeResource extends ServerResource {
         outDto.setDateFormatted(inDto.getTimeFormat());
 
         outDto.setSecondsOfHour(dateTime.getSecondOfMinute());
+        outDto.setSecondsOfDay(dateTime.getSecondOfDay());
         outDto.setMinutesOfHour(dateTime.getMinuteOfHour());
         outDto.setHoursOfDay(dateTime.getHourOfDay());
         outDto.setDayOfWeek(dateTime.getDayOfWeek());

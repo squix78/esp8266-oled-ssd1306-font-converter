@@ -12,6 +12,7 @@ public class TimeOutDto {
     private String timeFormat;
 
     private Integer secondsOfHour;
+    private Integer secondsOfDay;
     private Integer minutesOfHour;
     private Integer hoursOfDay;
     private Integer dayOfMonth;
