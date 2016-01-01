@@ -11,6 +11,5 @@ public class TimeInDto {
     private String country;
     private List<String> timeZoneIds;
     private String dateFormat;
-    private String timeFormat;
 
 }
