@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.net.URLDecoder;
 
 import javax.imageio.ImageIO;
 
@@ -19,7 +20,8 @@ public class FontPreviewResource extends ServerResource {
 
     @Get("image/png")
     public void getPreview() throws IOException {
-        String fontFamilyInput = (String) this.getRequestAttributes().get("fontName");
+        String fontFamilyInput = URLDecoder.decode(
+                (String) this.getRequestAttributes().get("fontName"), "utf8");
         String fontStyleInput = (String) this.getRequestAttributes().get("fontStyle");
         Integer fontStyle = Integer.valueOf(fontStyleInput);
         String fontSizeInput = (String) this.getRequestAttributes().get("fontSize");
