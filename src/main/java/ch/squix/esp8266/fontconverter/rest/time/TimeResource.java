@@ -16,7 +16,7 @@ public class TimeResource extends ServerResource {
     @Post(value = "json")
     public TimeOutDto execute(TimeInDto inDto) throws FontFormatException, IOException {
         TimeOutDto outDto = new TimeOutDto();
-        DateTime dateTime = new DateTime();
+        DateTime dateTime = new DateTime(DateTimeZone.UTC);
 
         Locale locale = new Locale(inDto.getLanguage(), inDto.getCountry());
         outDto.setMillisOfDayUtc(dateTime.getMillisOfDay());
