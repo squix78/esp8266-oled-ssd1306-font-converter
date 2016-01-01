@@ -2,7 +2,7 @@
   <h1>Font Converter</h1>
   <p class="lead">Select the font family and other settings to generate a new font file</p>
 </div>
-<div name="fontForm">
+<div name="fontForm" ng-show="isDataReady">
 	<div class="form-group">
 	 <label for="name">Font Family</label>
 	   <select required id="name" class="form-control" ng-model="fontArray.name">
@@ -47,6 +47,10 @@
 		 	{{fontArray.fontArray}}
 		 </textarea>
 	 </div>
+ </div>
+ <div ng-show="!isDataReady">
+    <img src="images/ajax-loader.gif"/>
+ 	Loading data...
  </div>
 
 
