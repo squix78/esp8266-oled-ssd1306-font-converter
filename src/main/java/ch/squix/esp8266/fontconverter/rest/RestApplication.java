@@ -16,12 +16,6 @@ import ch.squix.esp8266.fontconverter.rest.xbm.preview.XbmPreviewResource;
 
 public class RestApplication extends Application {
 
-    static {
-        // ObjectifyService.register(PairRate.class);
-        // ObjectifyService.register(SpeakerRate.class);
-        // ObjectifyService.register(Highscore.class);
-    }
-
     @Override
     public Restlet createInboundRoot() {
         try {

@@ -22,10 +22,6 @@
       <name>Public online Restlet repository</name>
       <url>http://maven.restlet.org</url>
     </repository>
-    <repository>
-      <id>my-alternate-repository</id>
-      <url>http://myrepo.net/repo</url>
-    </repository>
   </repositories>
 
 

@@ -2,56 +2,70 @@
   <h1>Font Converter</h1>
   <p class="lead">Select the font family and other settings to generate a new font file</p>
 </div>
-<div name="fontForm" ng-show="isDataReady">
-	<div class="form-group">
-	 <label for="name">Font Family</label>
-	   <select required id="name" class="form-control" ng-model="fontArray.name">
-	   		<option value="">---Please select---</option>
-	   		<option ng-repeat="fontFamily in fontFamilies" value="{{fontFamily.name}}">{{fontFamily.name}}</option>
-	   </select>
-	</div>
-	<div class="form-group">
-	  <label for="style">Style</label>
-	   <select required id="style" class="form-control" 
-	   	ng-model="fontArray.style" 
-	   	ng-options="id as style.name for (id, style) in styles">
-
-	   </select>
-	 <div/>
-	 <div class="form-group">
-	   <label for="size">Size</label>
-	   <input required id="size" class="form-control" type="text" ng-model="fontArray.size" value="16"/>
-	</div>
-	<div class="form-group">
-	 	<button ng-enabled="" type="submit" class="btn btn-primary" ng-click="getFontArray()">Create</button>
-	</div>
-	<div class="form-group" ng-show="fontArray.fontArray">
-		Do you like this font generator? If you do consider <b>spending me a beer</b> for my hardwork or use this link for your next
-		hardware order at <a href="https://www.banggood.com/?p=6R31122484684201508S">Banggood</a>:
-		<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-			<input type="hidden" name="cmd" value="_s-xclick">
-			<input type="hidden" name="hosted_button_id" value="2QM7Z8HL7CUK6">
-			<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-			<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-		</form>
-		Scroll down to see the created header file content...
-		
-	</div>
-	<div class="form-group">
-		<img src="/rest/fontPreview/{{fontArray.name}}/{{fontArray.style}}/{{fontArray.size}}"/>
-	</div>
-	 <div class="form-group" ng-show="fontArray.fontArray">
-	 	 <label for="result">C Font File</label>
-	 	 <div>Copy this text into you font header file (e.g. font.h) in the Arduino IDE</div>
-		 <textarea id="result" class="form-control" rows="80" cols="80">
-		 	{{fontArray.fontArray}}
-		 </textarea>
-	 </div>
- </div>
  <div ng-show="!isDataReady">
     <img src="images/ajax-loader.gif"/>
  	Loading data...
  </div>
+<div name="fontForm" ng-show="isDataReady">
+	<div class="row">
+	  <div class="col-md-6">
+		<div form-group">
+		   <label for="name">Font Family</label>
+		   <select required id="name" class="form-control" ng-model="fontArray.name">
+		   		<option value="">---Please select---</option>
+		   		<option ng-repeat="fontFamily in fontFamilies" value="{{fontFamily.name}}">{{fontFamily.name}}</option>
+		   </select>
+		</div>
+		<div class="form-group">
+		   <label for="style">Style</label>
+		   <select required id="style" class="form-control" 
+		   	ng-model="fontArray.style" 
+		   	ng-options="id as style.name for (id, style) in styles">
+		   </select>
+		</div>
+		<div class="form-group">
+		   <label for="size">Size</label>
+		   <input required id="size" class="form-control" type="text" ng-model="fontArray.size" value="16"/>
+	    </div>
+		<div class="form-group">
+		   <label for="libVersion">Library Version</label>
+		   <select required id="libVersion" class="form-control" ng-model="fontArray.libVersion">
+		   		<option value="2">&lt;3.0.0</option>
+		   		<option value="3">&gt;=3.0.0</option>
+		   </select>
+		</div>
+		<div class="form-group">
+		 	<button ng-enabled="" type="submit" class="btn btn-primary" ng-click="getFontArray()">Create</button>
+		</div>
+	  </div>
+      <div class="col-md-6 form-group">
+		<img src="/rest/fontPreview/{{fontArray.name}}/{{fontArray.style}}/{{fontArray.size}}"/>
+      </div>
+	</div>
+    <div class="row">
+	  <div class="col-md-12">
+		<div class="form-group" ng-show="fontArray.fontArray">
+			Do you like this font generator? If you do consider <b>spending me a beer</b> for my hardwork or use this link for your next
+			hardware order at <a href="https://www.banggood.com/?p=6R31122484684201508S">Banggood</a>:
+			<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+				<input type="hidden" name="cmd" value="_s-xclick">
+				<input type="hidden" name="hosted_button_id" value="2QM7Z8HL7CUK6">
+				<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+				<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+			</form>
+			Scroll down to see the created header file content...
+	
+		</div>
+	
+		 <div class="form-group" ng-show="fontArray.fontArray">
+		 	 <label for="result">C Font File</label>
+		 	 <div>Copy this text into you font header file (e.g. font.h) in the Arduino IDE</div>
+			 <textarea id="result" class="form-control" rows="80" cols="80">{{fontArray.fontArray}}</textarea>
+		 </div>
+	 </div>
+   </div>
+ </div>
+
 
 
  

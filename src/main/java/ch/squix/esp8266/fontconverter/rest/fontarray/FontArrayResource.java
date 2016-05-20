@@ -7,18 +7,23 @@ import java.io.IOException;
 import org.restlet.resource.Post;
 import org.restlet.resource.ServerResource;
 
-import ch.squix.esp8266.fontconverter.rest.FontConverter;
+import ch.squix.esp8266.fontconverter.rest.FontConverterV2;
+import ch.squix.esp8266.fontconverter.rest.FontConverterV3;
 
 public class FontArrayResource extends ServerResource {
 
     @Post(value = "json")
     public FontArrayDto execute(FontArrayDto dto) throws FontFormatException, IOException {
         StringBuilder builder = new StringBuilder();
-        Font font = new Font(dto.getName(), dto.getStyle(), dto.getSize());
-        FontConverter converter = new FontConverter(font);
-        converter.printFontArray(builder);
+        Font font = new Font(dto.getName(), Integer.valueOf(dto.getStyle()), dto.getSize());
+        if ("2".equals(dto.getLibVersion())) {
+            FontConverterV2 converter = new FontConverterV2(font);
+            converter.printFontArray(builder);
+        } else if ("3".equals(dto.getLibVersion())) {
+            FontConverterV3 converter = new FontConverterV3(font);
+            converter.printLetterData(builder);
+        }
         dto.setFontArray(builder.toString());
         return dto;
     }
-
 }

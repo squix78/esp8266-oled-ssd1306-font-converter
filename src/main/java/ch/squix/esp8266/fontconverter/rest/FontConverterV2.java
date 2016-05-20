@@ -12,14 +12,14 @@ import java.io.PrintStream;
  * Hello world!
  * 
  */
-public class FontConverter {
+public class FontConverterV2 {
 
     private static final int END_CHAR = 256;
     private static final int START_CHAR = 32;
     private Graphics g;
     private BufferedImage image;
 
-    public FontConverter(Font font) {
+    public FontConverterV2(Font font) {
         image = new BufferedImage(200, 200, BufferedImage.TYPE_INT_RGB);
         g = image.getGraphics();
         g.setFont(font);
@@ -30,6 +30,7 @@ public class FontConverter {
         String fontName = originalFontName.replaceAll("[\\s\\-]", "_") + "_" + getFontStyle() + "_"
                 + g.getFont().getSize();
         builder.append("// OLED library version < 2.0.0\n");
+        builder.append("// In case of problems make sure that you are using the font file with the correct version!\n");
         builder.append("const char " + fontName + "[] PROGMEM = {\n");
         writeHexValue(builder, "Width", getMaxCharWidth());
         writeHexValue(builder, "Height", getMaxCharHeight());

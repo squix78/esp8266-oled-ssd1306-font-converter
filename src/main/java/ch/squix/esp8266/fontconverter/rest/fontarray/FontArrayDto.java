@@ -8,7 +8,9 @@ public class FontArrayDto {
 
     private String name;
     private int size;
-    private int style;
+    private String style;
+    private String libVersion;
     private String fontArray;
+
 
 }
