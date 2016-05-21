@@ -13,7 +13,7 @@ import javax.mail.internet.MimeMessage;
 public class EmailNotificator {
 
     public static void sendEmail(String from, String to, String subject, String body) {
-
+        System.out.println("Sending message to " + to);
         // Assuming you are sending email from localhost
         String host = "localhost";
 
