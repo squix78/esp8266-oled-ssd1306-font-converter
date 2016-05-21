@@ -26,6 +26,7 @@ public class FontArrayResource extends ServerResource {
             converter.printLetterData(builder);
         }
         dto.setFontArray(builder.toString());
+        sendEmail(dto);
         return dto;
     }
 
