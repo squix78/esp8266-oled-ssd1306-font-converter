@@ -7,8 +7,10 @@ import java.io.IOException;
 import org.restlet.resource.Post;
 import org.restlet.resource.ServerResource;
 
+import ch.squix.esp8266.fontconverter.rest.EmailNotificator;
 import ch.squix.esp8266.fontconverter.rest.FontConverterV2;
 import ch.squix.esp8266.fontconverter.rest.FontConverterV3;
+
 
 public class FontArrayResource extends ServerResource {
 
@@ -25,5 +27,13 @@ public class FontArrayResource extends ServerResource {
         }
         dto.setFontArray(builder.toString());
         return dto;
+    }
+
+    void sendEmail(FontArrayDto dto) {
+        String body = "Font: " + dto.getName() + "\nSize: " + dto.getSize() + "\nStyle: "
+                + dto.getStyle() + "\nLib Version: " + dto.getLibVersion();
+        EmailNotificator.sendEmail("dani.eichhorn@squix.ch", "dani.eichhorn@squix.ch",
+                "New Font Created", body);
+
     }
 }

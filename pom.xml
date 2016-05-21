@@ -107,6 +107,11 @@
       <artifactId>logback-classic</artifactId>
       <version>0.9.24</version>
     </dependency>
+	<dependency>
+	    <groupId>javax.mail</groupId>
+	    <artifactId>mail</artifactId>
+	    <version>1.4.7</version>
+	</dependency>
 
     <dependency>
       <groupId>org.projectlombok</groupId>
