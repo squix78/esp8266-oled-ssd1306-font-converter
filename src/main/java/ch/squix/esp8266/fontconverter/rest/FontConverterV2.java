@@ -30,6 +30,7 @@ public class FontConverterV2 {
         String fontName = originalFontName.replaceAll("[\\s\\-]", "_") + "_" + getFontStyle() + "_"
                 + g.getFont().getSize();
         builder.append("// OLED library version < 2.0.0\n");
+        builder.append("// Created by http://oleddisplay.squix.ch/ Consider a donation\n");
         builder.append("// In case of problems make sure that you are using the font file with the correct version!\n");
         builder.append("const char " + fontName + "[] PROGMEM = {\n");
         writeHexValue(builder, "Width", getMaxCharWidth());

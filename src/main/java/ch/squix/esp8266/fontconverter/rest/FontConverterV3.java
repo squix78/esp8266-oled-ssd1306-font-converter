@@ -49,6 +49,7 @@ public class FontConverterV3 {
         String fontName = g.getFont().getFontName() + "_" + getFontStyle() + "_"
                 + g.getFont().getSize();
         builder.append("#define FONT_LIB_V3\n");
+        builder.append("// Created by http://oleddisplay.squix.ch/ Consider a donation\n");
         builder.append("// In case of problems make sure that you are using the font file with the correct version!\n");
         builder.append("const char " + fontName + "[] PROGMEM = {\n");
         writeHexValue(builder, "Width", getMaxCharWidth());
