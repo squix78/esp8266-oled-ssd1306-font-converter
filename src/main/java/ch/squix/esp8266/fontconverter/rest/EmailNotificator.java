@@ -46,6 +46,7 @@ public class EmailNotificator {
             Transport.send(message);
             System.out.println("Sent message successfully....");
         } catch (MessagingException mex) {
+            System.out.println(mex.getMessage());
             mex.printStackTrace();
         }
     }
