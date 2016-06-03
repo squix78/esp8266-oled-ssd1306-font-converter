@@ -33,22 +33,29 @@ public class FontConverterV3 {
 
 
     public static void main(String[] args) throws InterruptedException, IOException {
+        /*
+         * GraphicsEnvironment graphicEnvironment =
+         * GraphicsEnvironment.getLocalGraphicsEnvironment(); for (Font font :
+         * graphicEnvironment.getAllFonts()) {
+         * System.out.println(font.getFontName()); }
+         */
+
         StringBuilder builder = new StringBuilder();
-        FontConverterV3 app = new FontConverterV3(new Font("Arial", Font.PLAIN, 10));
+
+        FontConverterV3 app = new FontConverterV3(new Font("Meteocons", Font.PLAIN, 42));
         app.printLetterData(builder);
-        app = new FontConverterV3(new Font("Arial", Font.PLAIN, 16));
+        app = new FontConverterV3(new Font("Meteocons", Font.PLAIN, 21));
         app.printLetterData(builder);
-        app = new FontConverterV3(new Font("Arial", Font.PLAIN, 24));
-        app.printLetterData(builder);
+
+        System.out.println(builder);
     }
 
 
     public void printLetterData(StringBuilder builder) {
         List<LetterData> letterList = produceLetterDataList();
 
-        String fontName = g.getFont().getFontName() + "_" + getFontStyle() + "_"
-                + g.getFont().getSize();
-        builder.append("#define FONT_LIB_V3\n");
+        String fontName = g.getFont().getFontName().replaceAll(" ", "_") + "_" + getFontStyle()
+                + "_" + g.getFont().getSize();
         builder.append("// Created by http://oleddisplay.squix.ch/ Consider a donation\n");
         builder.append("// In case of problems make sure that you are using the font file with the correct version!\n");
         builder.append("const char " + fontName + "[] PROGMEM = {\n");

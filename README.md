@@ -10,4 +10,9 @@ and
 grunt server
 ```
 
+Deployment:
+```
+git push openshift HEAD
+```
+
 
