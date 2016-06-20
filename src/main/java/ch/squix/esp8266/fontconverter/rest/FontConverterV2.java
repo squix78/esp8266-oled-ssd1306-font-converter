@@ -27,8 +27,8 @@ public class FontConverterV2 {
 
     public void printFontArray(StringBuilder builder) {
         String originalFontName = g.getFont().getFontName();
-        String fontName = originalFontName.replaceAll("[\\s\\-]", "_") + "_" + getFontStyle() + "_"
-                + g.getFont().getSize();
+        String fontName = originalFontName.replaceAll("[\\s\\-\\.]", "_") + "_" + getFontStyle()
+                + "_" + g.getFont().getSize();
         builder.append("// OLED library version < 2.0.0\n");
         builder.append("// Created by http://oleddisplay.squix.ch/ Consider a donation\n");
         builder.append("// In case of problems make sure that you are using the font file with the correct version!\n");

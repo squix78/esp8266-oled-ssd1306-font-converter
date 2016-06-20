@@ -46,6 +46,8 @@ public class FontConverterV3 {
         app.printLetterData(builder);
         app = new FontConverterV3(new Font("Meteocons", Font.PLAIN, 21));
         app.printLetterData(builder);
+        app = new FontConverterV3(new Font("Meteocons", Font.PLAIN, 10));
+        app.printLetterData(builder);
 
         System.out.println(builder);
     }
@@ -54,8 +56,8 @@ public class FontConverterV3 {
     public void printLetterData(StringBuilder builder) {
         List<LetterData> letterList = produceLetterDataList();
 
-        String fontName = g.getFont().getFontName().replaceAll(" ", "_") + "_" + getFontStyle()
-                + "_" + g.getFont().getSize();
+        String fontName = g.getFont().getFontName().replaceAll("[\\s\\-\\.]", "_") + "_"
+                + getFontStyle() + "_" + g.getFont().getSize();
         builder.append("// Created by http://oleddisplay.squix.ch/ Consider a donation\n");
         builder.append("// In case of problems make sure that you are using the font file with the correct version!\n");
         builder.append("const char " + fontName + "[] PROGMEM = {\n");
