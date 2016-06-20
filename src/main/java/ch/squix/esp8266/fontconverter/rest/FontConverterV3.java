@@ -57,7 +57,7 @@ public class FontConverterV3 {
         List<LetterData> letterList = produceLetterDataList();
 
         String fontName = g.getFont().getFontName().replaceAll("[\\s\\-\\.]", "_") + "_"
-                + getFontStyle() + "_" + g.getFont().getSize();
+                + g.getFont().getSize();
         builder.append("// Created by http://oleddisplay.squix.ch/ Consider a donation\n");
         builder.append("// In case of problems make sure that you are using the font file with the correct version!\n");
         builder.append("const char " + fontName + "[] PROGMEM = {\n");
