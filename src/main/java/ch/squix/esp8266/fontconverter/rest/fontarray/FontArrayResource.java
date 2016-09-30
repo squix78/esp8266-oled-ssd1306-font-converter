@@ -8,6 +8,7 @@ import org.restlet.resource.Post;
 import org.restlet.resource.ServerResource;
 
 import ch.squix.esp8266.fontconverter.rest.EmailNotificator;
+import ch.squix.esp8266.fontconverter.rest.FontConverterGFX;
 import ch.squix.esp8266.fontconverter.rest.FontConverterV2;
 import ch.squix.esp8266.fontconverter.rest.FontConverterV3;
 
@@ -23,6 +24,9 @@ public class FontArrayResource extends ServerResource {
             converter.printFontArray(builder);
         } else if ("3".equals(dto.getLibVersion())) {
             FontConverterV3 converter = new FontConverterV3(font);
+            converter.printLetterData(builder);
+        } else if ("gfx".equals(dto.getLibVersion())) {
+            FontConverterGFX converter = new FontConverterGFX(font);
             converter.printLetterData(builder);
         }
         dto.setFontArray(builder.toString());

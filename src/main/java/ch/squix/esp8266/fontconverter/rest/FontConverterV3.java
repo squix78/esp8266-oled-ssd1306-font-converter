@@ -11,7 +11,24 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-
+/**
+ * https://learn.adafruit.com/adafruit-gfx-graphics-library/using-fonts
+ * https://github
+ * .com/adafruit/Adafruit-GFX-Library/blob/master/fontconvert/fontconvert.c
+ * https ://github.com/adafruit/Adafruit-GFX-Library/blob/master/Fonts/
+ * FreeMono18pt7b .h
+ * 
+ * table[j].bitmapOffset = bitmapOffset; table[j].width = bitmap->width;
+ * table[j].height = bitmap->rows; table[j].xAdvance = face->glyph->advance.x >>
+ * 6; table[j].xOffset = g->left; table[j].yOffset = 1 - g->top;
+ * 
+ * bitmapOffset += (bitmap->width * bitmap->rows + 7) / 8;
+ * 
+ * Pad end of char bitmap to next byte boundary if needed
+ * 
+ * @author deichhor
+ * 
+ */
 public class FontConverterV3 {
 
     private static final int END_CHAR = 256;
