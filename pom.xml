@@ -130,7 +130,7 @@
   <build>
      <pluginManagement>
       <plugins>
-        <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence 
+        <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence
           on the Maven build itself. -->
         <plugin>
           <groupId>org.eclipse.m2e</groupId>
@@ -195,7 +195,27 @@
                 <contextReloadable>true</contextReloadable>
             </configuration>
         </plugin>
-
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <version>2.3</version>
+            <executions>
+                <execution>
+                    <phase>package</phase>
+                    <goals><goal>copy</goal></goals>
+                    <configuration>
+                        <artifactItems>
+                            <artifactItem>
+                                <groupId>com.github.jsimone</groupId>
+                                <artifactId>webapp-runner</artifactId>
+                                <version>8.5.23.0</version>
+                                <destFileName>webapp-runner.jar</destFileName>
+                            </artifactItem>
+                        </artifactItems>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
       <plugin>
         <artifactId>maven-antrun-plugin</artifactId>
         <version>1.7</version>
@@ -215,7 +235,7 @@
               osfamily="windows" failonerror="true">
                   <arg line="/c npm install"/>
               </exec>
-              <!-- 
+              <!--
               <exec  executable="./npmUpdate.sh" dir="${project.basedir}" failonerror="true">
 			    <arg value="" />
 			  </exec>
@@ -234,7 +254,7 @@
               osfamily="windows" resultproperty="cmdresult">
                   <arg line="/c grunt --no-color "/>
               </exec>
-  
+
 
           </target>
       </configuration>
@@ -246,14 +266,14 @@
       </plugin>
     </plugins>
   </build>
-  
+
   	<profiles>
 		<profile>
-			<!-- When built in OpenShift the 'openshift' profile will be used when 
+			<!-- When built in OpenShift the 'openshift' profile will be used when
 				invoking mvn. -->
-			<!-- Use this profile for any OpenShift specific customization your app 
+			<!-- Use this profile for any OpenShift specific customization your app
 				will need. -->
-			<!-- By default that is to put the resulting archive into the 'webapps' 
+			<!-- By default that is to put the resulting archive into the 'webapps'
 				folder. -->
 			<!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
 			<id>openshift</id>
