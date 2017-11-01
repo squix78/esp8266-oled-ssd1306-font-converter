@@ -6,7 +6,7 @@ import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -59,14 +59,47 @@ public class FontConverterV3 {
 
         StringBuilder builder = new StringBuilder();
 
-        FontConverterV3 app = new FontConverterV3(new Font("Meteocons", Font.PLAIN, 42));
-        app.printLetterData(builder);
-        app = new FontConverterV3(new Font("Meteocons", Font.PLAIN, 21));
+        FontConverterV3 app = new FontConverterV3(new Font("Times", Font.PLAIN, 30));
+        //app.writeBinaryFontFile("TimesRegular30.mxf");
+        //app.printLetterData(builder);
+        /*app = new FontConverterV3(new Font("Meteocons", Font.PLAIN, 21));
         app.printLetterData(builder);
         app = new FontConverterV3(new Font("Meteocons", Font.PLAIN, 10));
-        app.printLetterData(builder);
+        app.printLetterData(builder);*/
 
         System.out.println(builder);
+    }
+
+    public ByteArrayOutputStream getBinaryOutputStream() throws IOException {
+        ByteArrayOutputStream os = new ByteArrayOutputStream();
+        List<LetterData> letterList = produceLetterDataList();
+        os.write(getMaxCharWidth());
+        os.write(getMaxCharHeight());
+        os.write(START_CHAR);
+        os.write(END_CHAR - START_CHAR);
+
+        int lastJumpPoint = 0;
+        for (LetterData letter : letterList) {
+            int letterWidth = letter.getWidth();
+            int size = letter.getByteSize();
+            String code = "" + ((int) letter.getCode());
+            if (letter.isVisable()) {
+                writeBinaryJumpTable(os, code, lastJumpPoint, size, letterWidth);
+                lastJumpPoint += size;
+            } else {
+                writeBinaryJumpTable(os, code, 0xFFFF, size, letterWidth);
+            }
+        }
+
+        for (LetterData letter : letterList) {
+            if (letter.isVisable()) {
+                for (int data : letter.getBytes()) {
+                    os.write((byte) data);
+                }
+
+            }
+        }
+        return os;
     }
 
 
@@ -189,6 +222,14 @@ public class FontConverterV3 {
             return "Italic";
         }
         return "";
+    }
+
+    private void writeBinaryJumpTable(OutputStream fos, String label, int jump, int size, int width) throws IOException {
+        fos.write((jump >> 8) & 0xFF); // MSB
+        fos.write((jump & 0xFF)); // LSB
+        fos.write((size)); // byteSize
+        fos.write((width)); // WIDTH
+        //builder.append(String.format(" // %s:%s", label, jump) + "\n");
     }
 
     private void writeJumpTable(StringBuilder builder, String label, int jump, int size, int width) {

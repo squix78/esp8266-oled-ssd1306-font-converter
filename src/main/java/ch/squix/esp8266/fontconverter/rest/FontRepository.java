@@ -14,7 +14,8 @@ public class FontRepository {
 
     public static void registerResourceFonts() throws URISyntaxException {
         List<File> fontNames = new ArrayList<>();
-        File dir = new File("/var/lib/openshift/566d81410c1e6676960001c5/app-root/data/fonts/");
+        File dir = new File(FontRepository.class.getClassLoader().getResource("fonts").toURI());
+        System.out.println("Font dir: " + dir);
         parseFontNames(fontNames, dir);
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         for (File file : fontNames) {
@@ -28,14 +29,18 @@ public class FontRepository {
     }
 
     public static void parseFontNames(List<File> fontFiles, File folder) throws URISyntaxException {
+        System.out.println("Folder " + folder + " exists: " + folder.exists() + ", isDirectory: " + folder.isDirectory());
         if (!folder.exists() || !folder.isDirectory()) {
+            System.out.println("Folder not found: " + folder);
             return;
         }
 
         for (File nextFile : folder.listFiles()) {
             if (nextFile.isDirectory()) {
+                System.out.println("Dir: " + nextFile);
                 parseFontNames(fontFiles, nextFile);
             } else if (nextFile.getName().matches(".*ttf")) {
+                System.out.println("Font found: " + nextFile);
                 fontFiles.add(nextFile);
 
             }

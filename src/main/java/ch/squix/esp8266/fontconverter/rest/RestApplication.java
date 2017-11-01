@@ -2,6 +2,7 @@ package ch.squix.esp8266.fontconverter.rest;
 
 import java.net.URISyntaxException;
 
+import ch.squix.esp8266.fontconverter.rest.fontarray.BinaryFontResource;
 import org.restlet.Application;
 import org.restlet.Restlet;
 import org.restlet.routing.Router;
@@ -32,6 +33,7 @@ public class RestApplication extends Application {
         router.attach("/fonts", FontResource.class);
         router.attach("/fontArray", FontArrayResource.class);
         router.attach("/fontPreview/{fontName}/{fontStyle}/{fontSize}", FontPreviewResource.class);
+        router.attach("/binaryFont/{fontName}/{fontStyle}/{fontSize}", BinaryFontResource.class);
         router.attach("/xbmPreview", XbmPreviewResource.class);
         router.attach("/time", TimeResource.class);
 

@@ -11,34 +11,36 @@
   "author": {
     "name": "ramr",
     "email": "ramr@example.org",
-    "url":  "http://www.openshift.com/"
+    "url": "http://www.openshift.com/"
   },
   "homepage": "http://www.openshift.com/",
   "repository": {
     "type": "git",
     "url": "https://gitub.com/ramr/nodejs-custom-version-openshift"
   },
-
   "engines": {
     "node": ">= 0.6.0",
     "npm": ">= 1.0.0"
   },
-
   "dependencies": {
-    "express": "*"
+    "angular-route": "^1.6.6",
+    "angular-view": "0.0.1",
+    "concat": "^1.0.3",
+    "express": "*",
+    "grunt-cli": "^1.2.0",
+    "main-bower-files": "^2.13.1"
   },
-  "devDependencies": { 
-    "grunt": "~0.4.4",
-    "grunt-bower-concat": "0.2.4",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-bower-concat": "^0.2.4",
     "grunt-bower-install": "1.6.0",
-    "grunt-contrib-concat": "~0.4.0",
+    "grunt-contrib-concat": "^0.4.0",
     "grunt-contrib-less": "0.11.0",
-    "grunt-contrib-uglify": "0.4.0",
-    "grunt-contrib-watch": "~0.6.1",
+    "grunt-contrib-uglify": "^0.4.0",
+    "grunt-contrib-watch": "^0.6.1",
     "livereloadx": "~0.3.3"
   },
   "bundleDependencies": [],
-
   "private": true,
   "main": "server.js"
 }
