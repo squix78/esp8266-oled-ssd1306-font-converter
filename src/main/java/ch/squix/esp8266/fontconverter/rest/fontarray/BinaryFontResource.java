@@ -42,7 +42,8 @@ public class BinaryFontResource extends ServerResource {
         final FontConverterV3 converter = new FontConverterV3(font);
         ByteArrayOutputStream baos = converter.getBinaryOutputStream();
         byte[] bytes = baos.toByteArray();
-        ByteArrayRepresentation bar = new ByteArrayRepresentation(bytes, MediaType.APPLICATION_OCTET_STREAM);
+        System.out.println(bytes.length);
+        ByteArrayRepresentation bar = new ByteArrayRepresentation(bytes, MediaType.ALL, bytes.length);
         getResponse().setEntity(bar);
 
     }
