@@ -14,7 +14,8 @@ public class FontRepository {
 
     public static void registerResourceFonts() throws URISyntaxException {
         List<File> fontNames = new ArrayList<>();
-        File dir = new File(FontRepository.class.getClassLoader().getResource("fonts").toURI());
+        //File dir = new File(FontRepository.class.getClassLoader().getResource("fonts").toURI());
+        File dir = new File(FontRepository.class.getResource("/fonts").toExternalForm());
         System.out.println("Font dir: " + dir);
         parseFontNames(fontNames, dir);
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
