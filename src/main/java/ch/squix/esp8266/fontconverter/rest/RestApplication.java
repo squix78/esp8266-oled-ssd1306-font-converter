@@ -1,5 +1,7 @@
 package ch.squix.esp8266.fontconverter.rest;
 
+import java.awt.*;
+import java.io.IOException;
 import java.net.URISyntaxException;
 
 import ch.squix.esp8266.fontconverter.rest.fontarray.BinaryFontResource;
@@ -22,7 +24,10 @@ public class RestApplication extends Application {
         try {
             FontRepository.registerResourceFonts();
         } catch (URISyntaxException e) {
-            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (FontFormatException e) {
             e.printStackTrace();
         }
         // Create a router Restlet that routes each call to a

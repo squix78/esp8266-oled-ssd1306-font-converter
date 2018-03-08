@@ -37,12 +37,12 @@
 		</div>
 		<div class="form-group">
 			<div class="row">
-			 	<button ng-enabled="" type="submit" class="col-md-2 btn btn-primary" ng-click="getFontArray()">Create</button>
-				<form class="col-md-4" action="http://www.banggood.com/0_96-Inch-4Pin-White-IIC-I2C-OLED-Display-Module-12864-LED-For-Arduino-p-958196.html?p=6R31122484684201508S" method="GET" target="_blank">
-					<button class="btn btn-success" type="submit">
-						Buy Display (Affiliate)
-					</button>
-				</form>
+			 	<button ng-enabled="" type="submit" class="col-md-3 btn btn-primary" ng-click="getFontArray()">Create</button>
+				<div class="col-md-3">
+					<a class="btn btn-success" href="/rest/binaryFont/{{fontArray.name}}/{{fontArray.style}}/{{fontArray.size}}">
+						Download Binary
+					</a>
+				</div>
 			 	<form class="col-md-2" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
 					<input type="hidden" name="cmd" value="_s-xclick"/>
 					<input type="hidden" name="hosted_button_id" value="2QM7Z8HL7CUK6"/>

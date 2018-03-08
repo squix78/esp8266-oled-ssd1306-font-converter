@@ -20,8 +20,8 @@ public class FontResource extends ServerResource {
         for (Font font : graphicEnvironment.getAllFonts()) {
             if (fontFamily == null || fontFamily.equals(font.getFamily())) {
                 FontDto dto = new FontDto();
-                dto.setName(font.getFontName());
-                dto.setFontFamily(font.getFamily());
+                dto.setName("YY" + font.getFontName());
+                dto.setFontFamily("XX" + font.getFamily());
                 dto.setPlain(font.isPlain());
                 dto.setItalic(font.isItalic());
                 dto.setBold(font.isBold());

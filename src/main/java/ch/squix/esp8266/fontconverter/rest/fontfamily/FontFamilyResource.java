@@ -15,6 +15,7 @@ public class FontFamilyResource extends ServerResource {
     public List<FontFamilyDto> execute() throws FontFormatException, IOException {
         List<FontFamilyDto> fonts = new ArrayList<>();
         GraphicsEnvironment graphicEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
+
         for (String fontFamilyName : graphicEnvironment.getAvailableFontFamilyNames()) {
             FontFamilyDto dto = new FontFamilyDto();
             dto.setName(fontFamilyName);
