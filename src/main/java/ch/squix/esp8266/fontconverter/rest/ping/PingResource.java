@@ -2,13 +2,13 @@ package ch.squix.esp8266.fontconverter.rest.ping;
 
 import java.io.UnsupportedEncodingException;
 
-import org.restlet.resource.Get;
-import org.restlet.resource.ServerResource;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+@RestController
+public class PingResource {
 
-public class PingResource extends ServerResource {
-
-    @Get(value = "json")
+    @GetMapping("/rest/ping")
     public PingDto execute() throws UnsupportedEncodingException {
         PingDto dto = new PingDto();
         dto.setAppName("ESP8266");

@@ -1,18 +1,18 @@
 Running the dev environment:
 
 ```
-mvn tomcat7:run
+mvn spring-boot:run
 ```
 
-and 
+Building docker image:
+```
+mvn clean package
+docker build -t squix78/displaytools:latest .
+```
 
+Running docker image:
 ```
-grunt server
-```
-
-Deployment:
-```
-git push openshift HEAD
+docker run -p 8880:8080 squix78/displaytools:latest
 ```
 
 

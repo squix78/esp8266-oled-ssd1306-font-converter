@@ -1,296 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.0.1</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>ch.squix</groupId>
+	<artifactId>esp8266-oled-ssd1306-font-converter</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>esp8266-oled-ssd1306-font-converter</name>
+	<description>Font Converter</description>
+	<properties>
+		<java.version>17</java.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+			<version>2.12.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.24</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
 
-  <modelVersion>4.0.0</modelVersion>
-  <packaging>war</packaging>
-  <version>1.0-SNAPSHOT</version>
-
-  <groupId>ch.squix</groupId>
-  <artifactId>esp8266-oled-ssd1306-font-converter</artifactId>
-
-  <properties>
-    <appengine.app.version>1</appengine.app.version>
-    <appengine.target.version>1.9.30</appengine.target.version>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <restlet-version>2.3.5</restlet-version>
-  </properties>
-
-  <repositories>
-    <repository>
-      <id>maven-restlet</id>
-      <name>Public online Restlet repository</name>
-      <url>http://maven.restlet.org</url>
-    </repository>
-  </repositories>
-
-
-  <dependencies>
-
-
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>servlet-api</artifactId>
-      <version>2.5</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>jstl</groupId>
-      <artifactId>jstl</artifactId>
-      <version>1.2</version>
-    </dependency>
-
-    <!-- XML parsing -->
-    <dependency>
-      <groupId>com.thoughtworks.xstream</groupId>
-      <artifactId>xstream</artifactId>
-      <version>1.4.2</version>
-    </dependency>
-    <dependency>
-      <groupId>xmlpull</groupId>
-      <artifactId>xmlpull</artifactId>
-      <version>1.1.3.1</version>
-    </dependency>
-    <dependency>
-      <groupId>net.sf.kxml</groupId>
-      <artifactId>kxml2</artifactId>
-      <version>2.3.0</version>
-    </dependency>
-
-    <!-- Rest -->
-    <dependency>
-      <groupId>org.restlet.jee</groupId>
-      <artifactId>org.restlet</artifactId>
-      <version>${restlet-version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.restlet.jee</groupId>
-      <artifactId>org.restlet.ext.servlet</artifactId>
-      <version>${restlet-version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.restlet.jee</groupId>
-      <artifactId>org.restlet.ext.jackson</artifactId>
-      <version>${restlet-version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.restlet.jee</groupId>
-      <artifactId>org.restlet.ext.json</artifactId>
-      <version>${restlet-version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.codehaus.jackson</groupId>
-      <artifactId>jackson-core-asl</artifactId>
-      <version>1.9.12</version>
-    </dependency>
-    <dependency>
-      <groupId>org.codehaus.jackson</groupId>
-      <artifactId>jackson-mapper-asl</artifactId>
-      <version>1.9.12</version>
-    </dependency>
-
-
-    <!-- utils -->
-    <dependency>
-		<groupId>com.google.guava</groupId>
-		<artifactId>guava</artifactId>
-		<version>19.0</version>
-	</dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
-      <version>1.6.1</version>
-    </dependency>
-
-    <dependency>
-      <groupId>ch.qos.logback</groupId>
-      <artifactId>logback-classic</artifactId>
-      <version>0.9.24</version>
-    </dependency>
-	<dependency>
-	    <groupId>javax.mail</groupId>
-	    <artifactId>mail</artifactId>
-	    <version>1.4.7</version>
-	</dependency>
-
-    <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-      <version>1.12.6</version>
-      <scope>provided</scope>
-    </dependency>
-	<dependency>
-	  <groupId>joda-time</groupId>
-	  <artifactId>joda-time</artifactId>
-	  <version>2.9.1</version>
-	</dependency>
-
-  </dependencies>
-
-  <build>
-     <pluginManagement>
-      <plugins>
-        <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence
-          on the Maven build itself. -->
-        <plugin>
-          <groupId>org.eclipse.m2e</groupId>
-          <artifactId>lifecycle-mapping</artifactId>
-          <version>1.0.0</version>
-          <configuration>
-            <lifecycleMappingMetadata>
-              <pluginExecutions>
-                <pluginExecution>
-                  <pluginExecutionFilter>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-antrun-plugin</artifactId>
-                    <versionRange>[1.7,)</versionRange>
-                    <goals>
-                      <goal>run</goal>
-                    </goals>
-                  </pluginExecutionFilter>
-                  <action>
-                    <execute/>
-                  </action>
-                </pluginExecution>
-              </pluginExecutions>
-            </lifecycleMappingMetadata>
-          </configuration>
-        </plugin>
-      </plugins>
-    </pluginManagement>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <version>2.5.1</version>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
-        </configuration>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-war-plugin</artifactId>
-        <version>2.3</version>
-        <configuration>
-          <archiveClasses>true</archiveClasses>
-          <webResources>
-            <!-- in order to interpolate version from pom into appengine-web.xml -->
-            <resource>
-              <directory>${basedir}/src/main/webapp/WEB-INF</directory>
-              <filtering>true</filtering>
-              <targetPath>WEB-INF</targetPath>
-            </resource>
-          </webResources>
-        </configuration>
-      </plugin>
-
-        <plugin>
-            <groupId>org.apache.tomcat.maven</groupId>
-            <artifactId>tomcat7-maven-plugin</artifactId>
-            <version>2.2</version>
-            <configuration>
-                <path>/</path>
-                <contextReloadable>true</contextReloadable>
-            </configuration>
-        </plugin>
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-dependency-plugin</artifactId>
-            <version>2.3</version>
-            <executions>
-                <execution>
-                    <phase>package</phase>
-                    <goals><goal>copy</goal></goals>
-                    <configuration>
-                        <artifactItems>
-                            <artifactItem>
-                                <groupId>com.github.jsimone</groupId>
-                                <artifactId>webapp-runner</artifactId>
-                                <version>8.5.23.0</version>
-                                <destFileName>webapp-runner.jar</destFileName>
-                            </artifactItem>
-                        </artifactItems>
-                    </configuration>
-                </execution>
-            </executions>
-        </plugin>
-      <plugin>
-        <artifactId>maven-antrun-plugin</artifactId>
-        <version>1.7</version>
-        <executions>
-            <execution>
-      <phase>generate-sources</phase>
-      <configuration>
-          <target name="building">
-              <echo>
-      <!--  NPM INSTALL  -->
-              </echo>
-              <exec executable="cmd" dir="${project.basedir}"
-              osfamily="windows" failonerror="true">
-                  <arg line="/c npm config set color false"/>
-              </exec>
-              <exec executable="cmd" dir="${project.basedir}"
-              osfamily="windows" failonerror="true">
-                  <arg line="/c npm install"/>
-              </exec>
-              <!--
-              <exec  executable="./npmUpdate.sh" dir="${project.basedir}" failonerror="true">
-			    <arg value="" />
-			  </exec>
-               -->
-              <echo>
-      <!-- Bower  -->
-              </echo>
-              <exec executable="cmd" dir="${project.basedir}"
-              osfamily="windows" resultproperty="cmdresult">
-                  <arg line="/c bower --no-color install"/>
-              </exec>
-              <echo>
-      <!-- GRUNT  -->
-              </echo>
-              <exec executable="cmd" dir="${project.basedir}"
-              osfamily="windows" resultproperty="cmdresult">
-                  <arg line="/c grunt --no-color "/>
-              </exec>
-
-
-          </target>
-      </configuration>
-                <goals>
-                    <goal>run</goal>
-                </goals>
-            </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
-
-  	<profiles>
-		<profile>
-			<!-- When built in OpenShift the 'openshift' profile will be used when
-				invoking mvn. -->
-			<!-- Use this profile for any OpenShift specific customization your app
-				will need. -->
-			<!-- By default that is to put the resulting archive into the 'webapps'
-				folder. -->
-			<!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
-			<id>openshift</id>
-			<build>
-				<finalName>{APP_NAME}</finalName>
-				<plugins>
-					<plugin>
-						<artifactId>maven-war-plugin</artifactId>
-						<version>2.1.1</version>
-						<configuration>
-							<outputDirectory>webapps</outputDirectory>
-							<warName>ROOT</warName>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
 
 </project>

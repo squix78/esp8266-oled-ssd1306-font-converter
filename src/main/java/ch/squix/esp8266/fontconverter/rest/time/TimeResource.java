@@ -8,12 +8,13 @@ import java.util.Locale;
 
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
-import org.restlet.resource.Post;
-import org.restlet.resource.ServerResource;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-public class TimeResource extends ServerResource {
+@RestController
+public class TimeResource {
 
-    @Post(value = "json")
+    @PostMapping("/rest/time")
     public TimeOutDto execute(TimeInDto inDto) throws FontFormatException, IOException {
         TimeOutDto outDto = new TimeOutDto();
         DateTime dateTime = new DateTime(DateTimeZone.UTC);

@@ -6,13 +6,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.restlet.resource.Get;
-import org.restlet.resource.ServerResource;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-public class FontFamilyResource extends ServerResource {
+import lombok.extern.slf4j.Slf4j;
 
-    @Get(value = "json")
+@Slf4j
+@RestController
+public class FontFamilyResource {
+
+    @GetMapping("/rest/fontFamilies")
     public List<FontFamilyDto> execute() throws FontFormatException, IOException {
+        log.info("Load all font family names");
         List<FontFamilyDto> fonts = new ArrayList<>();
         GraphicsEnvironment graphicEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
 
