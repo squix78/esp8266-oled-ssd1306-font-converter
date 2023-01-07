@@ -1,0 +1,7 @@
+version: '2'
+services:
+    message-server:
+        container_name: displaytools
+        image: squix78/displaytools:latest
+        ports:
+            - 80:8080
