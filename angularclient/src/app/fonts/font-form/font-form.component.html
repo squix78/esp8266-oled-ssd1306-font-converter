@@ -1,0 +1,92 @@
+<form [formGroup]="fontForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="font-card">
+    <mat-card-header>
+      <mat-card-title>Font Converter</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+    <div class="row">
+      <div class="col">
+        <div class="row">
+          <div class="col">
+            <label for="previewDisplay">Preview Display: </label>
+            <mat-form-field class="full-width">
+              <mat-select placeholder="Preview Display" formControlName="previewDisplay">
+                <mat-option *ngFor="let previewDisplay of previewDisplays" [value]="previewDisplay.value">
+                  {{ previewDisplay.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label for="fontFamily">Font Family: </label>
+            <mat-form-field class="full-width">
+              <mat-select placeholder="Font Family" formControlName="name">
+                <mat-option *ngFor="let fontFamily of fontFamilies" [value]="fontFamily">
+                  {{ fontFamily }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label for="fontStyle">Font Style: </label>
+            <mat-form-field class="full-width">
+              <mat-select placeholder="Style" formControlName="style">
+                <mat-option *ngFor="let style of styles | keyvalue" [value]="style.key">
+                  {{ style.value.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label for="size">Size: </label>
+            <mat-form-field class="full-width">
+              <input matInput #postalCode maxlength="5" placeholder="Size" type="number" formControlName="size">
+              <mat-hint align="end"></mat-hint>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label for="libraryVersion">Library Version: </label>
+            <mat-form-field class="full-width">
+              <mat-select placeholder="Library Version" formControlName="libVersion">
+                <mat-option *ngFor="let libraryVersion of libraryVersions | keyvalue" [value]="libraryVersion.key">
+                  {{ libraryVersion.value }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+        <div class="col">
+          <img src="{{getImageUrl()}}">
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit">Generate</button>&nbsp;
+      <button mat-raised-button color="warn" (click)="onBeer()">Say Thanks: Teleport a Beer</button>
+    </mat-card-actions>
+
+  </mat-card>
+</form>
+<BR/>
+<mat-card *ngIf="pixelFont.fontArray">
+  <mat-card-content>
+    <mat-form-field style="width: 100%;">
+      <textarea matInput rows="5" cols="40" placeholder="" cdkTextareaAutosize [(ngModel)]="pixelFont.fontArray"></textarea>
+    </mat-form-field>
+  
+  </mat-card-content>
+
+</mat-card>
+
+
+
