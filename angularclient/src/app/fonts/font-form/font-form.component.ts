@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
 export class FontFormComponent implements OnInit  {
   fontForm = this.fb.group({
     previewDisplay: 'OLED96',
-    name: 'Arial',
+    name: 'Dialog',
     style: '0',
     size: '16',
     libVersion: '3',
@@ -49,7 +49,7 @@ export class FontFormComponent implements OnInit  {
   ngOnInit(): void {
     this.fontsService.findAll().subscribe((data: Font[]) => {
       this.fonts = data;
-      this.fontFamilies = Array.from(new Set(this.fonts.map((item) => item.fontFamily)));
+      this.fontFamilies = Array.from(new Set(this.fonts.map((item) => item.fontFamily))).sort();
       console.log(this.fontFamilies);
     })
   }
@@ -70,5 +70,9 @@ export class FontFormComponent implements OnInit  {
 
   onBeer(): void {
     window.open("https://www.paypal.com/paypalme/squix78");
+  }
+
+  getFontArray(): string {
+    return this.pixelFont.fontArray;
   }
 }

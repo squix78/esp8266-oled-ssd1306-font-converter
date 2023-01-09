@@ -13,6 +13,8 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ClipboardModule } from '@angular/cdk/clipboard';
+
 
 
 @NgModule({
@@ -33,6 +35,7 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
+    ClipboardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

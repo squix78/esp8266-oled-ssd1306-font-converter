@@ -66,7 +66,16 @@
       </div>
 
         <div class="col">
-          <img src="{{getImageUrl()}}">
+          <div class="row">
+            <img src="{{getImageUrl()}}"/>
+          </div>
+          <div class="row" *ngIf="false && fontForm.value.previewDisplay === 'OLED96'">
+            <div>
+              This display is part of the ThingPulse ESP8266 Starter Kit.<BR/>
+              <img src="../../assets/Classic2.webp"/>
+            </div>
+          </div>
+
         </div>
       </div>
     </mat-card-content>
@@ -80,6 +89,9 @@
 <BR/>
 <mat-card *ngIf="pixelFont.fontArray">
   <mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" [cdkCopyToClipboard]="getFontArray()">Copy To Clipboard</button>&nbsp;
+    </mat-card-actions>
     <mat-form-field style="width: 100%;">
       <textarea matInput rows="5" cols="40" placeholder="" cdkTextareaAutosize [(ngModel)]="pixelFont.fontArray"></textarea>
     </mat-form-field>
