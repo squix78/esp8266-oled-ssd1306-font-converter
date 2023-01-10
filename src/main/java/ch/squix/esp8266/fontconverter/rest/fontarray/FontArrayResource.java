@@ -25,12 +25,15 @@ public class FontArrayResource {
         if ("2".equals(dto.getLibVersion())) {
             FontConverterV2 converter = new FontConverterV2(font);
             converter.printFontArray(builder);
+            dto.setFileName(converter.getFilename() + ".h");
         } else if ("3".equals(dto.getLibVersion())) {
             FontConverterV3 converter = new FontConverterV3(font);
             converter.printLetterData(builder);
+            dto.setFileName(converter.getFilename() + ".h");
         } else if ("gfx".equals(dto.getLibVersion())) {
             FontConverterGFX converter = new FontConverterGFX(font);
             converter.printLetterData(builder);
+            dto.setFileName(converter.getFilename() + ".h");
         }
         dto.setFontArray(builder.toString());
         sendEmail(dto);

@@ -4,6 +4,7 @@ import { Font } from 'src/app/shared/font';
 import { FontsService } from 'src/app/shared/fonts.service';
 import { PixelFont } from 'src/app/shared/pixel-font';
 import { FormsModule } from '@angular/forms';
+import { Dictionary } from 'src/app/shared/dictionary';
 
 @Component({
   selector: 'app-font-form',
@@ -26,7 +27,7 @@ export class FontFormComponent implements OnInit  {
     {name: 'OLED 0.96" (128x64)', value: 'OLED96'},
     {name: 'TFT 2.4" (240x320)', value: 'TFT24'},
   ];
-  styles = {
+  styles:Dictionary<any> = {
     "0": {name:"Plain"},
     "1": {name:"Bold"},
     "2": {name:"Italic"},
@@ -59,7 +60,26 @@ export class FontFormComponent implements OnInit  {
     this.fontsService.convertToPixelFont(this.pixelFont).subscribe((data: PixelFont) => {
       this.pixelFont = data;
     });
+    let fontStyleIndex: string = String(this.pixelFont.style);
+    let fontStyleText: any = this.styles[fontStyleIndex].name;
+    gtag('event', 'generate', {
+      fontFamily: this.pixelFont.name,
+      fontSize: this.pixelFont.size,
+      fontStyle: fontStyleText,
+    });
   }
+
+  downloadFile(): void {
+    const a = document.createElement("a");
+    a.href = "data:text/plain," + this.pixelFont.fontArray;
+    let filename = this.pixelFont.fileName;
+    a.setAttribute("download", filename);
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
+
+
 
   getImageUrl(): string {
     let formValue = this.fontForm.value;

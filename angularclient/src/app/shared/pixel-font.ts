@@ -8,4 +8,5 @@ export class PixelFont {
     style: string = '';
     libVersion: string = '';
     fontArray: string = '';
+    fileName: string = '';
 }

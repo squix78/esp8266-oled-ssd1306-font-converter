@@ -11,6 +11,7 @@ public class FontArrayDto {
     private String style;
     private String libVersion;
     private String fontArray;
+    private String fileName;
 
 
 }

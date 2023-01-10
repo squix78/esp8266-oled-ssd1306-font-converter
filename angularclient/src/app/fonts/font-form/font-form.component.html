@@ -91,6 +91,7 @@
   <mat-card-content>
     <mat-card-actions>
       <button mat-raised-button color="primary" [cdkCopyToClipboard]="getFontArray()">Copy To Clipboard</button>&nbsp;
+      <button mat-raised-button color="primary" (click)="downloadFile()">Download</button>&nbsp;
     </mat-card-actions>
     <mat-form-field style="width: 100%;">
       <textarea matInput rows="5" cols="40" placeholder="" cdkTextareaAutosize [(ngModel)]="pixelFont.fontArray"></textarea>
