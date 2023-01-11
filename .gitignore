@@ -3,4 +3,6 @@
 .idea
 *.iml
 .vscode
-
+angularclient/node/
+node/
+release.properties

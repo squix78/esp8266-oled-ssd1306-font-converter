@@ -63,9 +63,8 @@ export class FontFormComponent implements OnInit  {
     let fontStyleIndex: string = String(this.pixelFont.style);
     let fontStyleText: any = this.styles[fontStyleIndex].name;
     gtag('event', 'generate', {
-      fontFamily: this.pixelFont.name,
-      fontSize: this.pixelFont.size,
-      fontStyle: fontStyleText,
+      name: this.pixelFont.name,
+      size: this.pixelFont.size,
     });
   }
 
