@@ -9,7 +9,7 @@
 	</parent>
 	<groupId>ch.squix</groupId>
 	<artifactId>esp8266-oled-ssd1306-font-converter</artifactId>
-	<version>1.0.5</version>
+	<version>1.0.6-SNAPSHOT</version>
 	<name>esp8266-oled-ssd1306-font-converter</name>
 	<description>Font Converter</description>
 	<properties>
@@ -18,7 +18,7 @@
 
 	<scm>
 		<developerConnection>scm:git:https://github.com/squix78/esp8266-oled-ssd1306-font-converter</developerConnection>
-	  <tag>1.0.5</tag>
+	  <tag>HEAD</tag>
   </scm>
 	<dependencies>
 		<dependency>
