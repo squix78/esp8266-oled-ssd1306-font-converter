@@ -19,7 +19,14 @@
 	<scm>
 		<developerConnection>scm:git:https://github.com/squix78/esp8266-oled-ssd1306-font-converter</developerConnection>
 	  <tag>HEAD</tag>
-  </scm>
+    </scm>
+	<distributionManagement>
+       <repository>
+         <id>internal.repo</id>
+         <name>Internal repo</name>
+         <url>file:///tmp</url>
+       </repository>
+   </distributionManagement>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
