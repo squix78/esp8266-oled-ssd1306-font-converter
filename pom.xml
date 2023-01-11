@@ -59,6 +59,15 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<configuration>
+					<tagNameFormat>@{project.version}</tagNameFormat>
+					<releaseProfiles>release</releaseProfiles>
+					<arguments>-Prelease</arguments>
+				</configuration>
+			</plugin>
+			<plugin>
 				<groupId>com.github.eirslett</groupId>
 				<artifactId>frontend-maven-plugin</artifactId>
 				<version>1.12.1</version>
@@ -112,20 +121,31 @@
 
 				</executions>
 			</plugin>
-			<plugin>
-				<groupId>io.fabric8</groupId>
-				<artifactId>docker-maven-plugin</artifactId>
-				<version>0.40.3</version>
-				<configuration>
-					<filter>${*}</filter>
-					<images>
-					<image>
-						<name>squix78/displaytools:${project.version}</name>
-					</image>
-					</images>
-				</configuration>
-			</plugin>
 		</plugins>
 	</build>
+	<profiles>
+		<profile>
+			<id>release</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>io.fabric8</groupId>
+						<artifactId>docker-maven-plugin</artifactId>
+						<version>0.40.3</version>
+						<configuration>
+							<filter>${*}</filter>
+							<images>
+							<image>
+								<name>squix78/displaytools:${project.version}</name>
+							</image>
+							</images>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+				
+
 
 </project>
