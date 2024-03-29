@@ -1,4 +1,4 @@
-FROM openjdk:17-jdk-alpine
+FROM eclipse-temurin:22_36-jre-alpine
 RUN apk add --no-cache fontconfig ttf-dejavu
 RUN addgroup -S spring && adduser -S spring -G spring
 USER spring:spring
