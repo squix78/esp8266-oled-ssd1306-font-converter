@@ -9,13 +9,18 @@ import java.util.Locale;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @RestController
 public class TimeResource {
 
     @PostMapping("/rest/time")
-    public TimeOutDto execute(TimeInDto inDto) throws FontFormatException, IOException {
+    public TimeOutDto execute(@RequestBody TimeInDto inDto) throws FontFormatException, IOException {
+        log.info("Load time for time zones: {}", inDto);
         TimeOutDto outDto = new TimeOutDto();
         DateTime dateTime = new DateTime(DateTimeZone.UTC);
 

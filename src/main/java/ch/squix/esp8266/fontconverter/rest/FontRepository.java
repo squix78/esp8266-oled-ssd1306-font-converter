@@ -197,7 +197,8 @@ public class FontRepository {
         "/orbitron/Orbitron-Black.ttf",
         "/orbitron/Orbitron-Bold.ttf",
         "/orbitron/Orbitron-Medium.ttf",
-        "/orbitron/Orbitron-Regular.ttf"
+        "/orbitron/Orbitron-Regular.ttf",
+        "/fonts/gothic/urw_gothic_l_book.ttf"
 
     };
 

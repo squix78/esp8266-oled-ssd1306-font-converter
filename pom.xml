@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.0.1</version>
+		<version>3.2.4</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>ch.squix</groupId>
@@ -13,7 +13,7 @@
 	<name>esp8266-oled-ssd1306-font-converter</name>
 	<description>Font Converter</description>
 	<properties>
-		<java.version>17</java.version>
+		<java.version>21</java.version>
 	</properties>
 
 	<scm>
@@ -44,7 +44,7 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.18.24</version>
+			<version>1.18.30</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>

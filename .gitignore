@@ -6,3 +6,4 @@
 angularclient/node/
 node/
 release.properties
+.DS_Store

@@ -42,7 +42,8 @@ public class FontConverterGFX {
 
 
     public FontConverterGFX(Font font) {
-        image = new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB);
+        int imageSize = 100; //Math.max(100, font.getSize() * 2);
+        image = new BufferedImage(imageSize, imageSize, BufferedImage.TYPE_INT_RGB);
         g = (Graphics2D) image.getGraphics();
         g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
                 RenderingHints.VALUE_TEXT_ANTIALIAS_OFF);
@@ -103,7 +104,7 @@ public class FontConverterGFX {
 
 
         String fontName = getFilename();
-        builder.append("// Created by http://oleddisplay.squix.ch/ Consider a donation\n");
+        builder.append("// Created by https://oleddisplay.squix.ch/ Consider a donation\n");
         builder.append("// In case of problems make sure that you are using the font file with the correct version!\n");
         builder.append("const uint8_t " + fontName + "Bitmaps[] PROGMEM = {\n");
 
@@ -167,7 +168,7 @@ public class FontConverterGFX {
 
         Rectangle boundingBox = getBoundingBox(code);
         int height = Math.max(1, boundingBox.height);
-        int width = Math.max(1, boundingBox.width);
+        int width = Math.max(1, boundingBox.width + 1);
 
 
         GfxGlyph glyph = new GfxGlyph();
